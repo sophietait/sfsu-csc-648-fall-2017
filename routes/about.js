@@ -6,6 +6,9 @@ router.get('/', function(req, res, next) {
 });
 
 // Enter routes for teams about pages
+router.get('/aboutJames', function(req, res, next) {
+	res.render('aboutJames');
+});
 
 
 module.exports = router;
