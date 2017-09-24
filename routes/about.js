@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
 router.get('/aboutJames', function(req, res, next) {
 	res.render('aboutJames');
 });
-
+router.get('/aboutSupritha', function(req, res, next) {
+	res.render('aboutSupritha');
+});
 
 module.exports = router;
