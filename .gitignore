@@ -1,5 +1,5 @@
 
 node_modules/
 nbproject/
-
 *.log
+/nbproject/private/
