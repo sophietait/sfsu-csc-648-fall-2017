@@ -5,13 +5,8 @@ var db = require('../helpers/db');
  */
 
 exports.getAllListings = function(cb) {
-	var sql = 'SELECT * FROM Listings';
+	var sql = 'SELECT listing_id, address FROM Listing';
 	db.runquery(sql, cb); // Send query string and callback function
-}
-
-exports.getListingsByQuery = function(q, cb) {
-	var sql = 'SELECT * FROM Listings WHERE zip LIKE %' + q + '% OR address LIKE %' + q + '%';
-	db.runquery(sql, cb);
 }
 
 exports.getListingsByZip = function(q, cb) {
