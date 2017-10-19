@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css" type = "text/css"> </link>
+		<link rel="stylesheet" href="stylesheets/main.css" type = "text/css">
+	</head>
+	
+	<body>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1 class="text-center">Software Engineering class SFSU<p>Fall 2017</p><p>Section 2</p><p>Team 5</p></h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+
+					<!-- Link to home page -->
+					<a href="/"><button type="button" class="btn btn-primary">Home Page</button></a>
+
+					<!-- Link to about page -->
+					<a href="/about"><button type="button" class="btn btn-primary">About Page</button></a>
+
+					<!-- Search bar -->
+					<form action="/search" method="get">
+						<input type="text" name="q"><br>
+						<input type="submit" value="search">
+					</form>
+					<!-- end Search bar -->
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+
+					<!-- Display table of search results using ejs  -->
+					<!-- data variable is passed in from the search controller -->
+					<div class="table-responsive">
+					<table class="table">
+					<thead>
+						<tr>
+							<th>listing_id</th>
+							<th>address</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% for(var i = 0; i < data.length; i++) { %>
+						<tr>
+							<td><%= data[i].listing_id %></td>
+							<td><%= data[i].address %></td>
+						</tr>
+					<% } %>
+					</tbody>
+					</table>
+					</div>
+					<!-- end table -->
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

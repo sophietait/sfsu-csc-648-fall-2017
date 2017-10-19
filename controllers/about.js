@@ -2,30 +2,30 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-    res.render('about');
+    res.render('about/about');
 });
 
-// Enter routes for teams about pages
+// Enter routes for each team member's about page
 router.get('/aboutJames', function(req, res, next) {
-	res.render('aboutJames');
+	res.render('about/aboutJames');
 });
 router.get('/aboutSupritha', function(req, res, next) {
-	res.render('aboutSupritha');
+	res.render('about/aboutSupritha');
 });
 router.get('/aboutSaengduean', function(req, res, next) {
-	res.render('aboutSaengduean');
+	res.render('about/aboutSaengduean');
 });
 router.get('/aboutBravolly', function(req, res, next) {
-	res.render('aboutBravolly');
+	res.render('about/aboutBravolly');
 });
 router.get('/aboutSophie', function(req, res, next) {
-	res.render('aboutSophie');
+	res.render('about/aboutSophie');
 });
 router.get('/aboutBrendan', function(req, res, next) {
-	res.render('aboutBrendan');
+	res.render('about/aboutBrendan');
 });
 router.get('/aboutSteve', function(req, res, next) {
-	res.render('aboutSteve');
+	res.render('about/aboutSteve');
 });
 
 module.exports = router;

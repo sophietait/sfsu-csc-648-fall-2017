@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // Routes
-var about = require('./routes/about');
+var routes = require('./controllers');
 
 var app = express();
 
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/', about); // app root routes to about page
+app.use('/', routes); // Send all routing to app controller
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
