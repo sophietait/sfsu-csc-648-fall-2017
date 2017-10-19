@@ -1,26 +1,16 @@
 var mysql = require('mysql');
 
+// Provide database connection details
 var connection = mysql.createConnection({
-	host: 'localhost',
+	host: '127.0.0.1',
 	user: 'fa17g05',
 	password: 'csc648fa17g05',
 	database: 'fa17g05'
 });
 
+// Execute sql query on database
 exports.runquery = function(sql, cb) {
-
-	connection.connect();
 	connection.query(sql, function(err, rows, fields) {
 		cb(err, rows); // return rows returned from sql query, any err if any
 	});
-	connection.end();
-	
-	// Return test data
-	/*
-	var data = [{ id: 1, name: 'alice' },
-				{ id: 2, name: 'bob' },
-				{ id: 3, name: 'carl' },
-				{ id: 4, name: 'dale' }];
-	cb(null, data);
-	*/
 }

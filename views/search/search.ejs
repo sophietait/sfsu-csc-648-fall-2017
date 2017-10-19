@@ -17,13 +17,13 @@
 				<div class="col-sm-12">
 
 					<!-- Link to home page -->
-					<a href="/"><button type="button" class="btn btn-primary">Home Page</button></a>
+					<a href="home"><button type="button" class="btn btn-primary">Home Page</button></a>
 
 					<!-- Link to about page -->
-					<a href="/about"><button type="button" class="btn btn-primary">About Page</button></a>
+					<a href="about"><button type="button" class="btn btn-primary">About Page</button></a>
 
 					<!-- Search bar -->
-					<form action="/search" method="get">
+					<form action="search" method="get">
 						<input type="text" name="q"><br>
 						<input type="submit" value="search">
 					</form>
@@ -42,6 +42,10 @@
 						<tr>
 							<th>listing_id</th>
 							<th>address</th>
+							<th>city</th>
+							<th>state</th>
+							<th>zip code</th>
+							<th>price</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,6 +53,10 @@
 						<tr>
 							<td><%= data[i].listing_id %></td>
 							<td><%= data[i].address %></td>
+							<td><%= data[i].city %></td>
+							<td><%= data[i].state %></td>
+							<td><%= data[i].pincode %></td>
+							<td><%= data[i].price %></td>
 						</tr>
 					<% } %>
 					</tbody>
