@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 	listings.getAllListings(function(err, data) {
 		if(err) {
 			// add error handling
+			data = [];
 		}
 		// pass JSON data from search controller to search view
 		// NOTE: search term is in req.query.q
