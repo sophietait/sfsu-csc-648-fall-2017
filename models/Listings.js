@@ -15,10 +15,11 @@ exports.getAllListings = function(cb) {
 exports.getListingsBySearch = function(q, cb) {
 	var sql = "SELECT listing_id, address, city, state, pincode, price ";
 		sql += "FROM listing ";
-		sql += "WHERE LOWER(address) LIKE LOWER('%" + q + "%') OR ";
-		sql += "LOWER(city) LIKE LOWER('%" + q + "%') OR ";
+		sql += "WHERE ";
 		sql += "LOWER(state) LIKE LOWER('%" + q + "%') OR ";
-		sql += "pincode LIKE '%" + q + "%'";
+		sql += "pincode LIKE '%" + q + "%' OR ";
+		sql += "LOWER(city) LIKE LOWER('%" + q + "%') OR ";
+		sql += "LOWER(address) LIKE LOWER('%" + q + "%')";
 	db.runquery(sql, cb); // Send query string and callback function
 }
 
