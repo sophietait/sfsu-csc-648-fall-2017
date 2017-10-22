@@ -4,13 +4,12 @@ var router = express.Router();
 var listings = require('../models/Listings');
 
 router.get('/', function(req, res, next) {
-	// Get all listings from the Listings model
-	listings.getAllListings(function(err, data) {
+	// Get listings based on search 
+	listings.getListingsBySearch(req.query.q, function(err, data) {
 		if(err) {
-			// add error handling
+			data = []; // Set data to empty list on database error
 		}
 		// pass JSON data from search controller to search view
-		// NOTE: search term is in req.query.q
 		res.render('search/search', { data: data });
 	});
 });
