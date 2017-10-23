@@ -13,7 +13,7 @@ exports.getAllListings = function(cb) {
 
 // Get listings that are LIKE the user's search
 exports.getListingsBySearch = function(q, cb) {
-	var sql = "SELECT listing_id, address, city, state, pincode, price ";
+	var sql = "SELECT image, address, city, state, pincode, price ";
 		sql += "FROM listing ";
 		sql += "WHERE ";
 		sql += "LOWER(state) LIKE LOWER('%" + q + "%') OR ";
