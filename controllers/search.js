@@ -9,6 +9,13 @@ router.get('/', function(req, res, next) {
 		if(err) {
 			data = []; // Set data to empty list on database error
 		}
+		else {
+			// Convert image blobs to base64 encoded strings
+			for(var i = 0; i < data.length; i++) {
+				var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
+				data[i].image = 'data:image/png;base64,' + imgstr;
+			}
+		}
 		// pass JSON data from search controller to search view
 		res.render('search/search', { data: data });
 	});
