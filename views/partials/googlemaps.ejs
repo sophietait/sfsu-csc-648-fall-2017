@@ -1,0 +1,39 @@
+<!-- google maps ejs partial for displaying an address -->
+<div id="map"></div>
+<script>
+	var map;
+	var geocoder;
+	function initMap() {
+		// Set initial map options
+		var mapOptions = {
+			center: {lat: 37.722, lng: -122.478}, // SFSU as default location
+			zoom: 15,
+		}
+		map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	
+		// Geocode and add a marker
+		geocoder = new google.maps.Geocoder();
+
+		// Geocode address string passed in from listing controller
+		geocoder.geocode( { 'address': '<%= addressString %>' }, function(results, status) {
+			if(status == 'OK') {
+				// Set center of map to geocoded location
+				map.setCenter(results[0].geometry.location);
+	
+				// Add marker at geocoded location
+				var marker = new google.maps.Marker({
+					map: map,
+					position: results[0].geometry.location
+				});
+			}
+			else {
+				// Geocoding failed
+				// Add error handling
+			}
+		});
+	}
+</script>
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKLlUFmnr0buzYSqmAnlpJUQNQbORRWP8&callback=initMap">
+</script>
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel = "stylesheet" href="/bootstrap/css/bootstrap.min.css" type = "text/css"> </link>
+		<link rel="stylesheet" href="/stylesheets/main.css" type = "text/css">
+	</head>
+
+	<body>
+		<div class="container text-center">
+
+			<!-- display page header-->
+			<div class="row">
+				<div class="col-sm-12 page-header">
+					<h3 style ="text-align: center; color: blue; ">SFSU Software Engineering Project, Fall 2017.  For Demonstration Only</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<h1 class="text-center">Software Engineering class SFSU<p>Fall 2017</p><p>Section 2</p><p>Team 5</p></h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+
+					<!-- Link to home page -->
+					<a href="/home"><button type="button" class="btn btn-primary">Home Page</button></a>
+
+					<!-- Link to about page -->
+					<a href="/about"><button type="button" class="btn btn-primary">About Page</button></a>
+
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+
+					<!-- Listing information -->
+					<p>Listing page for address: <%= addressString %></p>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+
+					<!-- Google maps -->
+					<%- include ../partials/googlemaps.ejs %>
+
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>
