@@ -10,11 +10,11 @@
 		<div class="container text-center">
 
 			<!-- display page header-->
-			<div class="page-hearder">
-				<h3 style ="text-align: center ; color: blue">SFSU Software Engineering Project, Fall 2017.  For Demonstration Only</h3>
+			<div class="row">
+				<div class="col-sm-12 page-header">
+					<h3 style ="text-align: center; color: blue; ">SFSU Software Engineering Project, Fall 2017.  For Demonstration Only</h3>
+				</div>
 			</div>
-
-			
 			<div class="row">
 				<div class="col-sm-12">
 					<h1 class="text-center">Software Engineering class SFSU<p>Fall 2017</p><p>Section 2</p><p>Team 5</p></h1>
@@ -64,6 +64,9 @@
 							<td><%= data[i].state %></td>
 							<td><%= data[i].zipcode %></td>
 							<td><%= data[i].price %></td>
+
+							<!-- button to view listing -->
+							<td><a href="listing/<%= data[i].listing_id %>" class="btn btn-primary">View Listing</a></td>
 						</tr>
 					<% } %>
 					</tbody>
@@ -73,6 +76,7 @@
 
 				</div>
 			</div>
+
 		</div>
 	</body>
 </html>

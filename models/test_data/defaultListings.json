@@ -1,0 +1,6 @@
+{
+	"listings":
+	[
+		{"listing_id": 1, "address": "1600 Holloway Ave", "city": "San Francisco", "state": "CA", "zipcode": 94132, "price": 9000, "posted_on": "", "bedroom_count": 2, "bathroom_count": 1, "pool": 1, "ac": 1, "floor_size": 2400, "parking": 0, "seller_id": "", "image": "", "thumbnail": "", "price_per_square_foot": "", "heater": 1}
+	]
+}
