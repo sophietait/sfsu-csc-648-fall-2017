@@ -20,7 +20,7 @@ exports.runquery = function(sql, cb) {
 /*
  * Execute sql query on databse, escaping input
  */
-exports.runquery = function(sql, q, cb) {
+exports.runqueryEscaped = function(sql, q, cb) {
 	connection.query(sql, q, function(err, rows, fields) {
 		cb(err, rows); // return rows returned from sql query, any err if any
 	});
