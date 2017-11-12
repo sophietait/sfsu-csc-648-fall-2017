@@ -51,29 +51,25 @@ exports.getDefaultListings = function(cb) {
 }
 
 exports.sortByPriceHighToLow = function(search_text, cb){
-	var sql = "SELECT image, address, city, state, zipcode, price ";
+	var sql = "SELECT listing_id, image, address, city, state, zipcode, price ";
 		sql += "FROM listing ";
-		if(!search_text==null){
-			sql += "WHERE ";
-			sql += "LOWER(state) LIKE LOWER('%" + search_text + "%') OR ";
-			sql += "zipcode LIKE '%" + search_text + "%' OR ";
-			sql += "LOWER(city) LIKE LOWER('%" + search_text + "%') OR ";
-			sql += "LOWER(address) LIKE LOWER('%" + search_text + "%') ";
-		}	
-		sql += "ORDER BY price DESC";
-	db.runquery(sql, cb); // Send query string and callback function
-}
-
-exports.sortByPriceLowToHigh = function(search_text, cb){
-	var sql = "SELECT image, address, city, state, zipcode, price ";
-	sql += "FROM listing ";
-	if(!search_text==null){
 		sql += "WHERE ";
 		sql += "LOWER(state) LIKE LOWER('%" + search_text + "%') OR ";
 		sql += "zipcode LIKE '%" + search_text + "%' OR ";
 		sql += "LOWER(city) LIKE LOWER('%" + search_text + "%') OR ";
 		sql += "LOWER(address) LIKE LOWER('%" + search_text + "%') ";
-	}	
+		sql += "ORDER BY price DESC";
+	db.runquery(sql, cb); // Send query string and callback function
+}
+
+exports.sortByPriceLowToHigh = function(search_text, cb){
+	var sql = "SELECT listing_id, image, address, city, state, zipcode, price ";
+	sql += "FROM listing ";
+	sql += "WHERE ";
+	sql += "LOWER(state) LIKE LOWER('%" + search_text + "%') OR ";
+	sql += "zipcode LIKE '%" + search_text + "%' OR ";
+	sql += "LOWER(city) LIKE LOWER('%" + search_text + "%') OR ";
+	sql += "LOWER(address) LIKE LOWER('%" + search_text + "%') ";
 	sql += "ORDER BY price";
 	db.runquery(sql, cb); // Send query string and callback function
 }

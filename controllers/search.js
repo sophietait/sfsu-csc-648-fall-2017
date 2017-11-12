@@ -5,7 +5,6 @@ var listings = require('../models/Listings');
 
 router.get('/', function(req, res, next) {
 	// Get listings based on search 
-	console.log("searching homepage...");
 	listings.getListingsBySearch(req.query.search_text, function(err, data) {
 		if(err) {
 			data = []; // Set data to empty list on database error
@@ -26,8 +25,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/sortByPriceHighToLow', function(req, res, next) {
-	var search_text = req.url.split("=")[2];
-	listings.sortByPriceHighToLow(search_text, function(err, data) {
+	listings.sortByPriceHighToLow(req.query.search_text, function(err, data) {
 		if(err) {
 			// add error handling for database errors
 			// Set data to default test listings on database error(Used for testing without database)
@@ -51,8 +49,7 @@ router.get('/sortByPriceHighToLow', function(req, res, next) {
 });
 
 router.get('/sortByPriceLowToHigh', function(req, res, next) {
-	var search_text = req.url.split("=")[2];
-	listings.sortByPriceLowToHigh(search_text, function(err, data) {
+	listings.sortByPriceLowToHigh(req.query.search_text, function(err, data) {
 		if(err) {
 			// add error handling for database errors
 			// Set data to default test listings on database error(Used for testing without database)
