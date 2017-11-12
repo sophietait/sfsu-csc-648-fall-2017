@@ -20,14 +20,13 @@ exports.getUserByLogin = function(q, cb) {
 /*
  * getUsersById
  * Get users that match the provided user id.
- * q is a user id
  */
-exports.getUserById = function(q, cb) {
+exports.getUserById = function(id, cb) {
 	var sql = "SELECT user_id, email, first_name, last_name, user_type ";
 		sql += "FROM user ";
 		sql += "WHERE ";
 		sql += "user_id = ?";
-	db.runqueryEscaped(sql, [q], cb); // Send query string and callback function
+	db.runqueryEscaped(sql, [id], cb); // Send query string and callback function
 }
 
 /*

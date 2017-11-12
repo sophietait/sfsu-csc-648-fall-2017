@@ -1,3 +1,9 @@
+/*
+ * Currently a basic skeleton to handle user/seller
+ * login, sign up, dashboard features. More
+ * functionality will be added. 
+ */
+
 var express = require('express');
 var router = express.Router();
 
@@ -8,7 +14,16 @@ var users = require('../models/Users');
  * (User has clicked on login link)
  */
 router.get('/login', function(req, res, next) {
-	res.redirect('/home'); // temporary
+	res.render('user/login');
+});
+
+/*
+ * POST request to user dashboard
+ * Check that user credentials are correct
+ * and redirect them to the appropriate page
+ */
+router.post('/login', function(req, res, next) {
+	res.redirect('back');
 });
 
 /*
@@ -33,7 +48,7 @@ router.get('/logout', function(req, res, next) {
  * (User has clicked on the signup link)
  */
 router.get('/signup', function(req, res, next) {
-	res.redirect('/home'); // temporary
+	res.render('user/signup');
 });
 
 /*
@@ -43,7 +58,7 @@ router.get('/signup', function(req, res, next) {
  * (User has submitted account information on signup page)
  */
 router.post('/signup', function(req, res, next) {
-	res.redirect('/home'); // temporary
+	res.redirect('back'); // temporary
 });
 
 /*
@@ -52,15 +67,6 @@ router.post('/signup', function(req, res, next) {
  * (User clicks on dashboard link)
  */
 router.get('/dashboard', function(req, res, next) {
-	res.redirect('/home'); // temporary
-});
-
-/*
- * POST request to user dashboard
- * Check that user credentials are correct
- * (Assuming user is redirected to dashboard upon logging in)
- */
-router.post('/dashboard', function(req, res, next) {
 	res.redirect('/home'); // temporary
 });
 
