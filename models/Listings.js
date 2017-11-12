@@ -17,7 +17,7 @@ exports.getAllListings = function(cb) {
  * getListingsBySearch
  * Get listings that are LIKE the user's search. 
  */
-exports.getListingsBySearch = function(q, cb) {
+exports.getListingsBySearch = function(search_text, cb) {
 	var sql = "SELECT listing_id, image, address, city, state, zipcode, price ";
 		sql += "FROM listing ";
 		sql += "WHERE ";
@@ -25,8 +25,9 @@ exports.getListingsBySearch = function(q, cb) {
 		sql += "zipcode LIKE ? OR ";
 		sql += "LOWER(city) LIKE LOWER(?) OR ";
 		sql += "LOWER(address) LIKE LOWER(?)";
-	q = '%' + q + '%';
-	db.runqueryEscaped(sql, [q, q, q, q], cb); // Send query string and callback function
+		search_text = '%' + search_text + '%';
+	db.runqueryEscaped(sql, [search_text, search_text, search_text, search_text], cb); // Send query string and callback function
+
 }
 
 exports.getListingsById = function(id, cb) {
@@ -47,5 +48,37 @@ exports.getDefaultListings = function(cb) {
 	for(var i = 0; i < defaultListings.listings.length; i++)
 		data[i] = defaultListings.listings[i];
 	cb(data);
+}
+
+exports.sortByPriceHighToLow = function(search_text, cb){
+	var sql = "SELECT image, address, city, state, zipcode, price ";
+		sql += "FROM listing ";
+		if(!search_text==null){
+			sql += "WHERE ";
+			sql += "LOWER(state) LIKE LOWER('%" + search_text + "%') OR ";
+			sql += "zipcode LIKE '%" + search_text + "%' OR ";
+			sql += "LOWER(city) LIKE LOWER('%" + search_text + "%') OR ";
+			sql += "LOWER(address) LIKE LOWER('%" + search_text + "%') ";
+		}	
+		sql += "ORDER BY price DESC";
+	db.runquery(sql, cb); // Send query string and callback function
+}
+
+exports.sortByPriceLowToHigh = function(search_text, cb){
+	var sql = "SELECT image, address, city, state, zipcode, price ";
+	sql += "FROM listing ";
+	if(!search_text==null){
+		sql += "WHERE ";
+		sql += "LOWER(state) LIKE LOWER('%" + search_text + "%') OR ";
+		sql += "zipcode LIKE '%" + search_text + "%' OR ";
+		sql += "LOWER(city) LIKE LOWER('%" + search_text + "%') OR ";
+		sql += "LOWER(address) LIKE LOWER('%" + search_text + "%') ";
+	}	
+	sql += "ORDER BY price";
+	db.runquery(sql, cb); // Send query string and callback function
+}
+
+exports.applyFilter = function(search_text,cb){
+
 }
 

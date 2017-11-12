@@ -1,0 +1,28 @@
+<!-- data variable is passed in from the search controller -->
+<table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip Code</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for(var i = 0; i < data.length; i++) { %>
+            <tr>
+                <td><img style="width: 50px; height: 50px; " alt="IMAGE N/A" src="<%= data[i].image %>"/></td>
+                <td><%= data[i].address %></td>
+                <td><%= data[i].city %></td>
+                <td><%= data[i].state %></td>
+                <td><%= data[i].zipcode %></td>
+                <td><%= data[i].price %></td>
+                <!-- button to view listing -->
+                <td><a href="listing/<%= data[i].listing_id %>" class="btn btn-primary">View Listing</a></td>
+
+            </tr>
+        <% } %>
+        </tbody>
+        </table>
