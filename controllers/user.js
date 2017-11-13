@@ -33,11 +33,11 @@ router.get('/logout', function(req, res, next) {
 	req.session.destroy(function(err) {
 		if(err) {
 			// logout error
-			res.redirect('/home');
+			res.redirect('../home');
 		}
 		else {
 			// logout successful
-			res.redirect('/home');
+			res.redirect('../home');
 		}
 	});
 });
@@ -67,7 +67,7 @@ router.post('/signup', function(req, res, next) {
  * (User clicks on dashboard link)
  */
 router.get('/dashboard', function(req, res, next) {
-	res.redirect('/home'); // temporary
+	res.redirect('../home'); // temporary
 });
 
 module.exports = router;

@@ -37,7 +37,7 @@ router.get('/sortByPriceBedBath', function(req,res,next){
 					continue;
 				}
 				var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
-				data[i].image = 'data:image/png;base64' + imgstr;
+				data[i].image = 'data:image/png;base64,' + imgstr;
 			}
 			res.render('partials/searchResults.ejs', {layout: true, data: data});
 		}
