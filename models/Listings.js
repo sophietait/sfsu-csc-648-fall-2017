@@ -18,7 +18,7 @@ exports.getAllListings = function(cb) {
  * Get listings that are LIKE the user's search. 
  */
 exports.getListingsBySearch = function(search_text, cb) {
-	var sql = "SELECT listing_id, image, address, city, state, zipcode, price ";
+	var sql = "SELECT listing_id, image, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
 		sql += "FROM listing ";
 		sql += "WHERE ";
 		sql += "LOWER(state) LIKE LOWER(?) OR ";
@@ -50,27 +50,22 @@ exports.getDefaultListings = function(cb) {
 	cb(data);
 }
 
-exports.sortByPriceHighToLow = function(search_text, cb){
-	var sql = "SELECT listing_id, image, address, city, state, zipcode, price ";
-		sql += "FROM listing ";
-		sql += "WHERE ";
-		sql += "LOWER(state) LIKE LOWER('%" + search_text + "%') OR ";
-		sql += "zipcode LIKE '%" + search_text + "%' OR ";
-		sql += "LOWER(city) LIKE LOWER('%" + search_text + "%') OR ";
-		sql += "LOWER(address) LIKE LOWER('%" + search_text + "%') ";
-		sql += "ORDER BY price DESC";
-	db.runquery(sql, cb); // Send query string and callback function
-}
-
-exports.sortByPriceLowToHigh = function(search_text, cb){
-	var sql = "SELECT listing_id, image, address, city, state, zipcode, price ";
+exports.sortByPriceBedBath = function(search_text, sortByPrice, bedroomValue, bathroomValue, cb){
+	var sql = "SELECT listing_id, image, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
 	sql += "FROM listing ";
 	sql += "WHERE ";
-	sql += "LOWER(state) LIKE LOWER('%" + search_text + "%') OR ";
+	sql += "(bedroom_count >= "+bedroomValue+" AND ";
+	sql += "bathroom_count >= "+bathroomValue+") AND ";
+	sql += "(LOWER(state) LIKE LOWER('%" + search_text + "%') OR ";
 	sql += "zipcode LIKE '%" + search_text + "%' OR ";
 	sql += "LOWER(city) LIKE LOWER('%" + search_text + "%') OR ";
-	sql += "LOWER(address) LIKE LOWER('%" + search_text + "%') ";
-	sql += "ORDER BY price";
+	sql += "LOWER(address) LIKE LOWER('%" + search_text + "%')) ";
+	if(sortByPrice==1){
+		sql += "ORDER BY price";
+	}
+	else if (sortByPrice==2){
+		sql += "ORDER BY price DESC";
+	}
 	db.runquery(sql, cb); // Send query string and callback function
 }
 

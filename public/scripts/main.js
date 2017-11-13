@@ -1,15 +1,18 @@
 $(document).ready(function(){
     var search_text = $("#search_box").val();
-    $("#HighToLow, #LowToHigh").click(function(){
+
+    $(".bedroom, .bathroom, .price").click(function(){
+        $("#sort-by-"+$(this).attr('class')).val($(this).val());
+        $("#sort-by-"+$(this).attr('class')).html($(this).text() + " <span class=\"caret\"></span>");
         $.ajax({
             type: "GET",
-            url: "http://localhost:17005/search/sortByPrice"+(this).id+"?search_text="+search_text,
-            contentType:"application/json",
+            url: "http://localhost:17005/search/sortByPriceBedBath?search_text="+search_text+"&sortByPrice="+$("#sort-by-price").val()+"&bedroomValue="+$("#sort-by-bedroom").val()+"&bathroomValue="+$("#sort-by-bathroom").val(),
+            contentType: "application/json",
             success: function(response){
                 $("#searchResultsTable").html(response);
             },
             error: function(response){
-                alert("Sort did not work: " +response.data);
+                alert("Filter did not work: " +response.data);
             }
         });
     });
