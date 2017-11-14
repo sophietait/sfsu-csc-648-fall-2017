@@ -36,6 +36,14 @@ exports.getListingsById = function(id, cb) {
 	db.runquery(sql, cb);
 }
 
+exports.getListingsByCity = function(city, cb){""
+	var sql = "SELECT linting_id, image, address, city, state, zipcode, price FROM listing where city LIKE 'Daly City'";
+	   /* sql += "FROM listing";
+	    sql += "WHERE ";
+	    sql += "LOWER(city) LIKE LOWER('Daly%')";*/
+	    db.runquery(sql, cb);
+}
+
 /*
  * getDefaultListings
  * returns hardcoded json data of listings to use when testing without a database. 
@@ -47,4 +55,3 @@ exports.getDefaultListings = function(cb) {
 		data[i] = defaultListings.listings[i];
 	cb(data);
 }
-

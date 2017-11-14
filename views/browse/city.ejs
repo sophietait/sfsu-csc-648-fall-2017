@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css" type = "text/css"> </link>
+		<link rel="stylesheet" href="../stylesheets/main.css" type = "text/css">
+	</head>
+
+	<body>
+		<div class="container text-center">
+
+			<!-- display page header-->
+			<div class="row">
+				<div class="col-sm-12 page-header">
+					<h3 style ="text-align: center; color: blue; ">SFSU Software Engineering Project, Fall 2017.  For Demonstration Only</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+
+					<!-- Display table of search results using ejs  -->
+					<!-- data variable is passed in from the search controller -->
+					<div class="table-responsive">
+					<table class="table">
+					<thead>
+						<tr>
+							<th>image</th>
+							<th>address</th>
+							<th>city</th>
+							<th>state</th>
+							<th>zip code</th>
+							<th>price</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% for(var i = 0; i < data.length; i++) { %>
+						<tr>
+							<td><img style="width: 50px; height: 50px; " alt="IMAGE N/A" src="<%= data[i].image %>"/></td>
+							<td><%= data[i].address %></td>
+							<td><%= data[i].city %></td>
+							<td><%= data[i].state %></td>
+							<td><%= data[i].zipcode %></td>
+							<td><%= data[i].price %></td>
+
+							<!-- button to view listing -->
+							<td><a href="listing/<%= data[i].listing_id %>" class="btn btn-primary">View Listing</a></td>
+						</tr>
+					<% } %>
+					</tbody>
+					</table>
+					</div>
+	</body>
+</html>
