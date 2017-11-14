@@ -2,6 +2,7 @@
  *	db module is used by models to facilitate database operations.
  */
 var db = require('../helpers/db');
+var constants = require("../helpers/constants.js");
 
 /*
  * getAllListings
@@ -31,10 +32,11 @@ exports.getListingsBySearch = function(search_text, cb) {
 }
 
 exports.getListingsById = function(id, cb) {
-	var sql = "SELECT image, address, city, state, zipcode, price ";
-		sql += "FROM listing ";
+	var sql = "SELECT listing.image, listing.address, listing.city, listing.state, listing.zipcode, listing.price, listing.posted_on, listing.bedroom_count, listing.bathroom_count, listing.pool, listing.ac, listing.heater, listing.floor_size, listing.parking, listing.seller_id, user.first_name, user.last_name ";
+		sql += "FROM listing, user ";
 		sql += "WHERE ";
-		sql += "listing_id = ?";
+		sql += "listing.seller_id = user.user_id AND "
+		sql += "listing.listing_id = ?";
 	db.runqueryEscaped(sql, [id], cb);
 }
 
@@ -60,10 +62,10 @@ exports.sortByPriceBedBath = function(search_text, sortByPrice, bedroomValue, ba
 	sql += "zipcode LIKE '%" + search_text + "%' OR ";
 	sql += "LOWER(city) LIKE LOWER('%" + search_text + "%') OR ";
 	sql += "LOWER(address) LIKE LOWER('%" + search_text + "%')) ";
-	if(sortByPrice==1){
+	if(sortByPrice==constants.SORT_PRICE_LOW_TO_HIGH){
 		sql += "ORDER BY price";
 	}
-	else if (sortByPrice==2){
+	else if (sortByPrice==constants.SORT_PRICE_HIGH_TO_LOW){
 		sql += "ORDER BY price DESC";
 	}
 	db.runquery(sql, cb); // Send query string and callback function
