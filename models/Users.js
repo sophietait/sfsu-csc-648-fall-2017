@@ -39,3 +39,12 @@ exports.addNewUser = function(q, cb) {
 	db.runqueryEscaped(sql, [q.email, q.password], cb);
 }
 
+/*
+ * getContacts
+ * Get the contacts involving the user with the specified id
+ */
+exports.getContacts = function(user, cb) {
+	// to be implemented
+}
+
+
