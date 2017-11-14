@@ -3,7 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css" type = "text/css"> </link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<!-- <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/> -->
+		<!-- <script type="text/javascript" src="DataTables/datatables.min.js"></script> -->
 		<link rel="stylesheet" href="stylesheets/main.css" type = "text/css">
+		<script src="scripts/main.js"></script>
 	</head>
 
 	<body>
@@ -31,49 +36,55 @@
 
 					<!-- Search bar -->
 					<form action="search" method="get">
-						<input type="text" name="q"><br>
-						<input type="submit" value="search">
+						<input type="text" name="search_text" id = "search_box" value = "<%=pass_search_text%>"><br>
+						<input type="submit" value="Search" id ="search_button">
 					</form>
 					<!-- end Search bar -->
 
 				</div>
 			</div>
 			<div class="row">
+				<div class="dropdown col-sm-4">
+				    <button id = "sort-by-price" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" value="<%=pass_price_count%>">Price
+				    	<span class="caret"></span>
+				    </button>
+				    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+						<li class = "price" value = "0" role="presentation"><a role="menuitem" tabindex="-1" href="#"><-- Filter by Price --></a></li>
+					    <li class = "price" value = "1" role="presentation"><a role="menuitem" tabindex="-1" href="#">Low-High</a></li>
+					    <li class = "price" value = "2" role="presentation"><a role="menuitem" tabindex="-1" href="#">High-Low</a></li>
+				    </ul>
+				</div>
+				<div class="dropdown col-sm-4">
+					<button id = "sort-by-bedroom" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" value="<%=pass_bedroom_count%>">No of Beds
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+						<li class = "bedroom" role="presentation" value="0"><a role="menuitem" tabindex="-1" href="#"><-- Filter by Bedroom Count--></a></li>
+						<li class = "bedroom" role="presentation" value="1"><a role="menuitem" tabindex="-1" href="#">1+</a></li>
+						<li class = "bedroom" role="presentation" value="2"><a role="menuitem" tabindex="-1" href="#">2+</a></li>
+						<li class = "bedroom" role="presentation" value="3"><a role="menuitem" tabindex="-1" href="#">3+</a></li>
+						<li class = "bedroom" role="presentation" value="4"><a role="menuitem" tabindex="-1" href="#">4+</a></li>
+					</ul>
+				</div>
+				<div class="dropdown col-sm-4">
+					<button id = "sort-by-bathroom" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" value="<%=pass_bathroom_count%>">No of Baths
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+						<li class = "bathroom" role="presentation" value="0"><a role="menuitem" tabindex="-1" href="#"><-- Filter by Bathroom Count--></a></li>
+						<li class = "bathroom" role="presentation" value="1"><a role="menuitem" tabindex="-1" href="#">1+</a></li>
+						<li class = "bathroom" role="presentation" value="2"><a role="menuitem" tabindex="-1" href="#">2+</a></li>
+						<li class = "bathroom" role="presentation" value="3"><a role="menuitem" tabindex="-1" href="#">3+</a></li>
+						<li class = "bathroom" role="presentation" value="4"><a role="menuitem" tabindex="-1" href="#">4+</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-sm-12">
-
 					<!-- Display table of search results using ejs  -->
-					<!-- data variable is passed in from the search controller -->
-					<div class="table-responsive">
-					<table class="table">
-					<thead>
-						<tr>
-							<th>image</th>
-							<th>address</th>
-							<th>city</th>
-							<th>state</th>
-							<th>zip code</th>
-							<th>price</th>
-						</tr>
-					</thead>
-					<tbody>
-					<% for(var i = 0; i < data.length; i++) { %>
-						<tr>
-							<td><img style="width: 50px; height: 50px; " alt="IMAGE N/A" src="<%= data[i].image %>"/></td>
-							<td><%= data[i].address %></td>
-							<td><%= data[i].city %></td>
-							<td><%= data[i].state %></td>
-							<td><%= data[i].zipcode %></td>
-							<td><%= data[i].price %></td>
-
-							<!-- button to view listing -->
-							<td><a href="listing/<%= data[i].listing_id %>" class="btn btn-primary">View Listing</a></td>
-						</tr>
-					<% } %>
-					</tbody>
-					</table>
+					<div class="table-responsive" id="searchResultsTable">
+						<% include ../partials/searchResults.ejs %>
 					</div>
-					<!-- end table -->
-
 				</div>
 			</div>
 

@@ -36,11 +36,10 @@ exports.getListingsById = function(id, cb) {
 	db.runquery(sql, cb);
 }
 
-exports.getListingsByCity = function(city, cb){""
-	var sql = "SELECT linting_id, image, address, city, state, zipcode, price FROM listing where city LIKE 'Daly City'";
-	   /* sql += "FROM listing";
-	    sql += "WHERE ";
-	    sql += "LOWER(city) LIKE LOWER('Daly%')";*/
+exports.getListingsByCity = function(cb){
+	var sql = "SELECT city ";
+	    sql += "FROM listing";
+ 
 	    db.runquery(sql, cb);
 }
 
