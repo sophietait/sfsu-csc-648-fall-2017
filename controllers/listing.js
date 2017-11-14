@@ -19,10 +19,8 @@ router.get('/:id(\\d+)', function(req, res, next) {
 					addressString = listingData[0].address + ', ' + listingData[0].city + ' ' + 
 									listingData[0].zipcode + ' ' + listingData[0].state;
 				}
-				res.render('listing/listing', { listingData: listingData[0], addressString: addressString });	
+				res.render('listing/listing', { userData: req.session.user, listingData: listingData[0], addressString: addressString });	
 			});
-			
-			//next(); // Stop handling request
 		}
 		else {
 			// Create address string used for google maps
@@ -30,9 +28,12 @@ router.get('/:id(\\d+)', function(req, res, next) {
 			if(typeof listingData !== 'undefined' && listingData.length > 0) {
 				addressString = listingData[0].address + ', ' + listingData[0].city + ' ' + 
 								listingData[0].zipcode + ' ' + listingData[0].state;
+				// Render listing page for the appropriate listing_id, passing the listing object and address string
+    			res.render('listing/listing', { userData: req.session.user, listingData: listingData[0], addressString: addressString });
 			}
-			// Render listing page for the appropriate listing_id, passing the listing object and address string
-    		res.render('listing/listing', { listingData: listingData[0], addressString: addressString });
+			else {
+				next(); // stop handling request for invalid listing
+			}
 		}
 	});
 });

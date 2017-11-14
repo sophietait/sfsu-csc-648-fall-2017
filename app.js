@@ -22,7 +22,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'fa17g05', resave: false, saveUninitialized: false }));
+app.use(session({ 
+	name: 'sessionId',
+	secret: 'fa17g05', 
+	resave: false, 
+	saveUninitialized: false,
+	cookie: {
+		httpOnly: true,
+		expires: new Date(Date.now() + 60 * 60 * 1000) // 1 hour
+	}
+}));
+
+// Set user session to unregistered user if they are not logged in
+app.use(function(req, res, next) {
+	if(!req.session.user) {
+		req.session.user = { type: -1 };
+	}
+	next();
+});
 
 // Routes
 app.use('/', routes); // Send all routing to app controller

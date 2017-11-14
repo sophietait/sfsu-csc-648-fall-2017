@@ -7,11 +7,15 @@ router.use('/listing', require('./listing'));
 router.use('/user', require('./user'));
 
 router.get('/', function(req, res, next) {
-	res.render('home');
+	res.redirect('/home');
 });
 
 router.get('/home', function(req, res, next) {
-	res.render('home');
+	/*
+	 * Add database support for featured listings
+	 */
+
+	res.render('home', { userData: req.session.user });
 });
 
 module.exports = router;
