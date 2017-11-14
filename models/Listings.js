@@ -2,7 +2,7 @@
  *	db module is used by models to facilitate database operations.
  */
 var db = require('../helpers/db');
-var constants = require("../helpers/constants.js");
+const constants = require("../helpers/constants.js");
 
 /*
  * getAllListings
