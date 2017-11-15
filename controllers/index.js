@@ -7,14 +7,17 @@ router.use('/listing', require('./listing'));
 router.use('/user', require('./user'));
 
 router.get('/', function(req, res, next) {
-	res.render('home', {
-		title: 'Dream Home'
-	});
+	res.redirect('./home');
 });
 
 router.get('/home', function(req, res, next) {
+	/*
+	 * Add database support for featured listings
+	 */
+
 	res.render('home', {
-		title: 'Dream Home'
+		title: 'Dream Home',
+		userData: req.session.user
 	});
 });
 
