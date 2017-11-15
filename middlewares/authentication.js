@@ -63,6 +63,7 @@ exports.signup = function(req, res, next) {
 					if(err) {
 						// database error
 						req.session.user.signup = false;
+						next();
 					}
 					else {
 						// user successfully created
@@ -73,7 +74,8 @@ exports.signup = function(req, res, next) {
 			}
 			else {
 				// user already exists. Do not call next
-				res.redirect('back');
+				req.session.user.signup = false;
+				next();
 			}
 		}
 	});

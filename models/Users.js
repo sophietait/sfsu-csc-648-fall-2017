@@ -47,8 +47,8 @@ exports.getUserById = function(id, cb) {
  * q is an object that contains email and password
  */
 exports.addNewUser = function(q, cb) {
-	var sql = "INSERT INTO user(user_type, email, user_password, i_agree) ";
-		sql += "VALUES(?, ?, ?, 1)";
+	var sql = "INSERT INTO user(user_type, first_name, last_name, email, user_password, phone, i_agree) ";
+		sql += "VALUES(?, '', '', ?, ?, 0, 1)";
 	db.runqueryEscaped(sql, [q.type, q.email, q.password], cb);
 }
 
