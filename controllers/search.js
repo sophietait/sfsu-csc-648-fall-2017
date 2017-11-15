@@ -28,7 +28,7 @@ router.get('/sortByPriceBedBath', function(req,res,next){
 	listings.sortByPriceBedBath(req.query.search_text, req.query.sortByPrice, req.query.bedroomValue, req.query.bathroomValue, function(err,data){
 		if(err){
 			listings.getDefaultListings(function(data){
-				res.render('search/search', { userData: req.session.data, data: data });
+				res.render('search/search', { userData: req.session.user, data: data });
 			});
 		}
 		else{
