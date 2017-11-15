@@ -13,7 +13,7 @@ exports.login = function(req, res, next) {
 	hash.update(req.body.pwd + req.body.email);
 	var hashedpwd = hash.digest('base64');
 
-	user.getUsersByLogin({ 'email': req.body.email, 'password': hashedpwd }, function(err, userData) {
+	user.getUserByLogin({ 'email': req.body.email, 'password': hashedpwd }, function(err, userData) {
 		if(err) {
 			// database error
 			next();
@@ -54,19 +54,22 @@ exports.signup = function(req, res, next) {
 	user.getUsersByEmail(req.body.email, function(err, userData) {
 		if(err) {
 			// database error
-			next(1, req, res);
+			req.session.user.signup = false;
+			next();
 		}
 		else {
 			if(typeof userData === 'undefined' || userData.length <= 0) {
 				// no other user with these credentials, attempt to add to database
-				user.addNewUser({ 'email': req.body.email, 'password': hashedpwd }, function(err) {
+				// Type is set to seller at the moment
+				user.addNewUser({ 'type': 1, 'email': req.body.email, 'password': hashedpwd }, function(err) {
 					if(err) {
 						// database error
-						next(1, req, res);
+						req.session.user.signup = false;
 					}
 					else {
 						// user successfully created
-						next(null, req, res);
+						req.session.user.signup = true;
+						next();
 					}
 				});
 			}

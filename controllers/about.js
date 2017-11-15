@@ -7,25 +7,25 @@ router.get('/', function(req, res, next) {
 
 // Enter routes for each team member's about page
 router.get('/aboutJames', function(req, res, next) {
-	res.render('about/aboutJames');
+	res.render('about/aboutJames', { userData: req.session.user });
 });
 router.get('/aboutSupritha', function(req, res, next) {
-	res.render('about/aboutSupritha');
+	res.render('about/aboutSupritha', { userData: req.session.user });
 });
 router.get('/aboutSaengduean', function(req, res, next) {
-	res.render('about/aboutSaengduean');
+	res.render('about/aboutSaengduean', { userData: req.session.user });
 });
 router.get('/aboutBravolly', function(req, res, next) {
-	res.render('about/aboutBravolly');
+	res.render('about/aboutBravolly', { userData: req.session.user });
 });
 router.get('/aboutSophie', function(req, res, next) {
-	res.render('about/aboutSophie');
+	res.render('about/aboutSophie', { userData: req.session.user });
 });
 router.get('/aboutBrendan', function(req, res, next) {
-	res.render('about/aboutBrendan');
+	res.render('about/aboutBrendan', { userData: req.session.user });
 });
 router.get('/aboutSteve', function(req, res, next) {
-	res.render('about/aboutSteve');
+	res.render('about/aboutSteve', { userData: req.session.user });
 });
 
 module.exports = router;

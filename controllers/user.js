@@ -57,7 +57,7 @@ router.get('/logout', function(req, res, next) {
  * (User has clicked on the signup link)
  */
 router.get('/signup', function(req, res, next) {
-	res.render('user/signup');
+	res.render('user/signup', { userData: req.session.user });
 });
 
 /*
@@ -66,13 +66,13 @@ router.get('/signup', function(req, res, next) {
  * Create a new account for the user in the database
  * (User has submitted account information on signup page)
  */
-router.post('/signup', auth.signup, function(err, req, res, next) {
-	if(err) {
-		// signup failed
+router.post('/signup', auth.signup, function(req, res, next) {
+	if(req.session.user.signup) {
+		// signup success
 		res.redirect('../home');
 	}
 	else {
-		// signup success
+		// signup failed
 		res.redirect('../home');
 	}
 });
@@ -85,17 +85,9 @@ router.post('/signup', auth.signup, function(err, req, res, next) {
 router.get('/dashboard', function(req, res, next) {
 	if(req.session.user.id) {
 		// user is logged in
-		/*
-		user.getContacts(req.session.user.id, function(err, contactData) {
-			// getContacts returns the appropriate contacts based on the user type
-			if(err) {
-				// database error
-				res.redirect('../home');
-			}
-			else {
-				res.render('user/dashboard', { userData: req.session.user, contactData: contactData });
-			}
-		});*/
+
+		// Add database call to get rows from contacted_listing table
+
 		res.render('user/dashboard', { userData: req.session.user });
 	}
 	else {
