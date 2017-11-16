@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var listing = require('../models/Listings');
+
 router.use('/about', require('./about'));
 router.use('/search', require('./search'));
 router.use('/listing', require('./listing'));
@@ -11,13 +13,27 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/home', function(req, res, next) {
-	/*
-	 * Add database support for featured listings
-	 */
-
-	res.render('home', {
-		title: 'Dream Home',
-		userData: req.session.user
+	// Get featured listings from database
+	listing.getFeaturedListings(function(err, listingData) {
+		if(err) {
+			// database error
+			listingData = []; // set listingData to empty array on database error
+		}
+		else {
+			// convert image blobs to base64 encoded strings
+			for(var i = 0; i < listingData.length; i++) {
+				if(listingData[i].image == null) {
+					continue;
+				}
+				var imgstr = new Buffer(listingData[i].image, 'binary').toString('base64');
+				listingData[i].image = 'data:image/png;base64,' + imgstr;
+			}
+		}
+		res.render('home', {
+			title: 'Dream Home',
+			userData: req.session.user,
+			featuredListings: listingData
+		});
 	});
 });
 
