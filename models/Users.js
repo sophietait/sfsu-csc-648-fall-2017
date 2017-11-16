@@ -9,7 +9,7 @@ var db = require('../helpers/db');
  * q is an object that contains email and password
  */
 exports.getUserByLogin = function(q, cb) {
-	var sql = "SELECT user_id, email, first_name, last_name, user_type ";
+	var sql = "SELECT user_id, email, first_name, last_name, user_type, phone ";
 		sql += "FROM user ";
 		sql += "WHERE ";
 		sql += "email = ? AND ";
