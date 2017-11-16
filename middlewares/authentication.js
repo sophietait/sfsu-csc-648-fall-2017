@@ -31,7 +31,7 @@ exports.login = function(req, res, next) {
 					email: userData[0].email,
 					phone: userData[0].phone,
 					type: userData[0].user_type
-				}
+				};
 				next();
 			}
 			else {
