@@ -75,3 +75,16 @@ exports.applyFilter = function(search_text,cb){
 
 }
 
+/*
+ * getFeaturedListings
+ * Get four listings to display as featured listings
+ */
+exports.getFeaturedListings = function(cb) {
+	var sql = "SELECT listing_id, image, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
+		sql += "FROM listing ";
+		sql += "ORDER BY price DESC ";
+		sql += "LIMIT 4 ";
+	db.runquery(sql, cb); // Send query string and callback function
+}
+
+
