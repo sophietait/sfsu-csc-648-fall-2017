@@ -23,13 +23,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ 
-	name: 'sessionId',
+	name: 'fa17g05_sessionId',
 	secret: 'fa17g05', 
 	resave: false, 
 	saveUninitialized: false,
 	cookie: {
-		httpOnly: true,
-		expires: new Date(Date.now() + 60 * 60 * 1000) // 1 hour
+		httpOnly: true
 	}
 }));
 
