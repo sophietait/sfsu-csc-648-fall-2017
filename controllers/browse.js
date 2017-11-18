@@ -8,30 +8,53 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/city', function(req, res, next){
-	listings.getListingsByCity(req.query.q, function(err, data) {
-		if(err) {
-			// add error handling for database errors
-
-			// Set data to default test listings on database error(Used for testing without database)
-			listings.getDefaultListings(function(data) {
-				res.render('browse/city', { data: data });
-			});
-
+	listings.getListingsByCity(function(err, data) {
+		if(err){
+			//database error
+			res.redirect('/home');
 		}
-		else {
-			// Convert image blobs to base64 encoded strings(a format that HTML can display)
-			for(var i = 0; i < data.length; i++) {
-				if(data[i].image == null){
-					continue;
-				}
-				var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
-				data[i].image = 'data:image/png;base64,' + imgstr;
+		else{
+			for(var i =0 ; i < data.length; i++){
+				data[i] = data[i].city;
 			}
-			// pass JSON data from search controller to search view
-			res.render('browse/city', { data: data });
+			    res.render('browse/result' , {data: data});
+		}
+		
+	});
+});
+
+router.get('/state', function(req, res, next){
+	listings.getListingsByState(function(err, data) {
+		if(err){
+			//database error
+			res.redirect('/home');
+		}
+		else{
+			for(var i =0 ; i < data.length; i++){
+				data[i] = data[i].state;
+			}
+			res.render('browse/result' , {data: data});
 		}
 	});
 });
+
+router.get('/zipcode', function(req, res, next){
+	listings.getListingsByZipCode(function(err, data) {
+		if(err){
+			//database error
+			res.redirect('/home');
+		}
+		else{
+			for(var i = 0; i < data.length; i++){
+				data[i] = data[i].zipcode;
+			}
+			res.render('browse/result' , {data: data});
+		}
+	});
+});
+
+
  
+
 module.exports = router;
    

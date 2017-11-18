@@ -18,37 +18,14 @@
 
 			<div class="row">
 				<div class="col-sm-12">
+                    <ul class="list-group">
+					<% for (var i = 0; i < data.length; i++){ %> 
+						<li class="list-group-item"><%= data[i].city %></li>
 
-					<!-- Display table of search results using ejs  -->
-					<!-- data variable is passed in from the search controller -->
-					<div class="table-responsive">
-					<table class="table">
-					<thead>
-						<tr>
-							<th>image</th>
-							<th>address</th>
-							<th>city</th>
-							<th>state</th>
-							<th>zip code</th>
-							<th>price</th>
-						</tr>
-					</thead>
-					<tbody>
-					<% for(var i = 0; i < data.length; i++) { %>
-						<tr>
-							<td><img style="width: 50px; height: 50px; " alt="IMAGE N/A" src="<%= data[i].image %>"/></td>
-							<td><%= data[i].address %></td>
-							<td><%= data[i].city %></td>
-							<td><%= data[i].state %></td>
-							<td><%= data[i].zipcode %></td>
-							<td><%= data[i].price %></td>
-
-							<!-- button to view listing -->
-							<td><a href="listing/<%= data[i].listing_id %>" class="btn btn-primary">View Listing</a></td>
-						</tr>
 					<% } %>
-					</tbody>
-					</table>
-					</div>
+					</ul>
+				</div>
+				</div>
+					
 	</body>
 </html>
