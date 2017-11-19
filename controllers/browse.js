@@ -11,7 +11,7 @@ router.get('/city', function(req, res, next){
 	listings.getListingsByCity(function(err, data) {
 		if(err){
 			//database error
-			res.redirect('/home');
+			res.redirect('./home');
 		}
 		else{
 			for(var i =0 ; i < data.length; i++){
@@ -27,7 +27,7 @@ router.get('/state', function(req, res, next){
 	listings.getListingsByState(function(err, data) {
 		if(err){
 			//database error
-			res.redirect('/home');
+			res.redirect('./home');
 		}
 		else{
 			for(var i =0 ; i < data.length; i++){
@@ -42,7 +42,7 @@ router.get('/zipcode', function(req, res, next){
 	listings.getListingsByZipCode(function(err, data) {
 		if(err){
 			//database error
-			res.redirect('/home');
+			res.redirect('./home');
 		}
 		else{
 			for(var i = 0; i < data.length; i++){

@@ -43,19 +43,19 @@ exports.getListingsById = function(id, cb) {
 exports.getListingsByCity = function(cb){
 	var sql = "SELECT DISTINCT city ";
 	    sql += "FROM listing ";
-	db.runqueryEscaped(sql, cb);    
+	db.runquery(sql, cb);    
 }
 
 exports.getListingsByState = function(cb){
 	var sql = "SELECT DISTINCT state ";
 	    sql += "FROM listing ";
-	db.runqueryEscaped(sql, cb);    
+	db.runquery(sql, cb);    
 }
 
 exports.getListingsByZipCode = function(cb){
 	var sql = "SELECT DISTINCT zipcode ";
 	    sql += "FROM listing ";
-	db.runqueryEscaped(sql, cb);    
+	db.runquery(sql, cb);    
 }
 
 /*
