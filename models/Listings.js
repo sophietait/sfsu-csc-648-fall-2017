@@ -40,6 +40,24 @@ exports.getListingsById = function(id, cb) {
 	db.runqueryEscaped(sql, [id], cb);
 }
 
+exports.getListingsByCity = function(cb){
+	var sql = "SELECT DISTINCT city ";
+	    sql += "FROM listing ";
+	db.runquery(sql, cb);    
+}
+
+exports.getListingsByState = function(cb){
+	var sql = "SELECT DISTINCT state ";
+	    sql += "FROM listing ";
+	db.runquery(sql, cb);    
+}
+
+exports.getListingsByZipCode = function(cb){
+	var sql = "SELECT DISTINCT zipcode ";
+	    sql += "FROM listing ";
+	db.runquery(sql, cb);    
+}
+
 /*
  * getDefaultListings
  * returns hardcoded json data of listings to use when testing without a database. 
