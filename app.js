@@ -2,9 +2,10 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-//var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+
+const constants = require('./helpers/constants');
 
 // Routes
 var routes = require('./controllers');
@@ -20,9 +21,24 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'fa17g05', resave: false, saveUninitialized: false }));
+app.use(session({ 
+	name: 'fa17g05_sessionId',
+	secret: 'fa17g05', 
+	resave: false, 
+	saveUninitialized: false,
+	cookie: {
+		httpOnly: true
+	}
+}));
+
+// Set user session to unregistered user if they are not logged in
+app.use(function(req, res, next) {
+	if(!req.session.user) {
+		req.session.user = { type: constants.UNREGISTERED_USER };
+	}
+	next();
+});
 
 // Routes
 app.use('/', routes); // Send all routing to app controller
