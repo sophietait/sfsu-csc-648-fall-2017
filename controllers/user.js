@@ -8,6 +8,7 @@ var express = require('express');
 var router = express.Router();
 
 var auth = require('../middlewares/authentication');
+const constants = require('../helpers/constants');
 
 var users = require('../models/Users');
 
@@ -57,6 +58,17 @@ router.get('/logout', function(req, res, next) {
  * (User has clicked on the signup link)
  */
 router.get('/signup', function(req, res, next) {
+	req.session.user.signupType = constants.BUYER; // Create buyer account type
+	res.render('user/signup', { userData: req.session.user });
+});
+
+/*
+ * GET request to seller signup page
+ * Render signup page where seller may signup/create an account
+ * (User has clicked on the seller link)
+ */
+router.get('/sellersignup', function(req, res, next) {
+	req.session.user.signupType = constants.SELLER; // Create seller account type
 	res.render('user/signup', { userData: req.session.user });
 });
 

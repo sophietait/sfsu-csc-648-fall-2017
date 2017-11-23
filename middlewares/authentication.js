@@ -11,10 +11,10 @@ const constants = require('../helpers/constants');
 exports.login = function(req, res, next) {
 	// hash password
 	var hash = crypto.createHash('sha256');
-	hash.update(req.body.pwd + req.body.email);
-	var hashedpwd = hash.digest('base64');
+	hash.update(req.body.password + req.body.email);
+	var hashedpassword = hash.digest('base64');
 
-	user.getUserByLogin({ 'email': req.body.email, 'password': hashedpwd }, function(err, userData) {
+	user.getUserByLogin({ 'email': req.body.email, 'password': hashedpassword }, function(err, userData) {
 		if(err) {
 			// database error
 			next();
@@ -45,8 +45,8 @@ exports.login = function(req, res, next) {
 exports.signup = function(req, res, next) {
 	// hash password
 	var hash = crypto.createHash('sha256');
-	hash.update(req.body.pwd + req.body.email);
-	var hashedpwd = hash.digest('base64');
+	hash.update(req.body.password + req.body.email);
+	var hashedpassword = hash.digest('base64');
 
 	user.getUsersByEmail(req.body.email, function(err, userData) {
 		if(err) {
@@ -58,8 +58,8 @@ exports.signup = function(req, res, next) {
 			if(typeof userData === 'undefined' || userData.length <= 0) {
 				// no other user with these credentials, attempt to add to database
 
-				// Type is set to seller at the moment
-				user.addNewUser({ 'type': constants.SELLER, 'email': req.body.email, 'password': hashedpwd }, function(err) {
+				// Type is set in the referring user controller: sellersignup or signup
+				user.addNewUser({ 'type': req.session.user.signupType, 'email': req.body.email, 'password': hashedpassword }, function(err) {
 					if(err) {
 						// database error
 						req.session.user.signup = false;
@@ -73,7 +73,7 @@ exports.signup = function(req, res, next) {
 				});
 			}
 			else {
-				// user already exists. Do not call next
+				// user already exists. 
 				req.session.user.signup = false;
 				next();
 			}
