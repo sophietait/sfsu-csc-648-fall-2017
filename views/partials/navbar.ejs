@@ -16,31 +16,33 @@
             <div class = "collapse navbar-collapse" id ="nav" >   
             
               <ul class="nav navbar-nav navbar-right">
-                <li><a href = "about">About</a></li>
-                <li><a>Seller</a></li>
+                <li><a href = "/about">About</a></li>
+                <li><a href="/user/sellersignup">Seller</a></li>
                 <li class="dropdown" id = "login">
-                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">login</a>
+                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Login</a>
                     <div class="dropdown-menu" id="formLogin">
                         <div class="row">
                             <div class="container-fluid">
-                                <form class="">
+                                <form action="/user/login" method="post" class="">
                                     <div class="form-group">
-                                        <label class="">Username</label>
-                                        <input class="form-control" name="username" id="username" type="text">
+                                        <label class="">Email</label>
+                                        <input class="form-control" name="email" id="email" type="email" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="">Password</label>
-                                        <input class="form-control" name="password" id="password" type="password">
+                                        <input class="form-control" name="password" id="password" type="password" required>
                                         <br class="">
                                     </div>
                                     <button type="submit" id="btnLogin" class="btn btn-success btn-sm">Login</button>
-                                    <a id = "account">Create Account</a>
+                                    <a href="/user/signup" id = "account">Create Account</a>
                                 </form>
                             </div>
                         </div>
-                        <a id = "logout">Log Out</a>
+                        <a href="/user/logout" id = "logout">Log Out</a>
                     </div>
-                  </li>    
+                </li>    
+
+				<li><a href="/user/dashboard">Dashboard</a></li>
 
               </ul>
 
