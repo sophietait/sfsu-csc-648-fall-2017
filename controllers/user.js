@@ -6,7 +6,11 @@
 
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
 
+var app = express();
+
+app.use(bodyParser());
 var auth = require('../middlewares/authentication');
 const constants = require('../helpers/constants');
 
@@ -99,12 +103,49 @@ router.get('/dashboard', function(req, res, next) {
 		// user is logged in
 
 		// Add database call to get rows from contacted_listing table
-
-		res.render('user/dashboard', { userData: req.session.user });
+		users.getSellerListings(req.session.user, function(err, data){
+			if(err){
+				res.redirect('../home');
+			}
+			else{
+				res.render('user/dashboard', { userData: req.session.user, data: data });
+			}
+		});
 	}
 	else {
 		// user is not logged in
 		res.redirect('../home');
+	}
+});
+
+router.get('/addListingPage', function(req, res, next){
+	if(req.session.user.id) {
+		res.render('user/addListingPage', { userData: req.session.user });
+	}
+	else {
+		// user is not logged in
+		res.redirect('../home');
+	}
+});
+
+router.post('/addListing', function(req, res, next){
+	if(req.session.user.id){
+		var listingParams = req.body;
+		users.addListing(req.body, req.session.user.id, function(err, data){
+			if(err){
+				res.redirect('../home');
+			}
+			else{
+				users.getSellerListings(req.session.user, function(err, data){
+					if(err){
+						res.redirect('../home');
+					}
+					else{
+						res.render('user/dashboard', { userData: req.session.user, data: data });
+					}
+				});
+			}
+		});
 	}
 });
 
