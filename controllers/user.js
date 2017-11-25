@@ -5,12 +5,10 @@
  */
 
 var express = require('express');
+var formidable = require('formidable');
+var fs = require('fs');
 var router = express.Router();
-var bodyParser = require('body-parser');
 
-var app = express();
-
-app.use(bodyParser());
 var auth = require('../middlewares/authentication');
 const constants = require('../helpers/constants');
 
@@ -127,28 +125,45 @@ router.get('/addListingPage', function(req, res, next){
 
 router.post('/addListing', function(req, res, next){
 	if(req.session.user.id){
-		users.addListing(req.body, req.session.user.id, function(err, data){
-			if(err){
-				res.redirect('../home');
-			}
-			else{
-				users.getSellerListings(req.session.user, function(err, data){
-					if(err){
+
+		var form = new formidable.IncomingForm();
+		form.uploadDir = __dirname + '/../public/uploads'; // temporary upload dir for images
+		form.keepExtensions = true; // keep image file extensions
+
+		// Parse addListing form with formidable
+		form.parse(req, function(err, fields, files) {
+			/*
+			 * NOTE: files.image still returns a valid file object even when
+			 * no file is selected. The file it writes to the files system 
+			 * is 0 bytes. 
+			 */
+
+			// Read file and convert to binary buffer(blob)
+			//fields.image = new Buffer(fs.readFileSync(files.image.path), 'binary');
+			fields.image = fs.readFileSync(files.image.path);
+				
+			// pass form fields(including image blob) and user id to addListing function
+			users.addListing(fields, req.session.user.id, function(err, data){
+				if(err) {
+					/*
+					 * Database error not related to images.
+					 * Continue to delete image but set error
+					 * message/flag here to say that listing was not added
+					 */
+				}
+				// delete image file from filesystem
+				fs.unlink(files.image.path, function(err) {
+					if(err) {
+						// Error deleting file from filesystem
 						res.redirect('../home');
 					}
-					else{
-						// Convert image blobs to base64 encoded strings
-						for(var i = 0; i < data.length; i++) {
-							if(data[i].image == null){
-								continue;
-							}
-							var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
-							data[i].image = 'data:image/png;base64,' + imgstr;
-						}
-						res.render('user/dashboard', { userData: req.session.user, data: data });
+					else {
+						// Image file deleted
+						// Listing has been added to the database
+						res.redirect('./dashboard');
 					}
 				});
-			}
+			});
 		});
 	}
 });
