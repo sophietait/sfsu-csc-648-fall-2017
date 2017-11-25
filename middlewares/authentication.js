@@ -59,7 +59,7 @@ exports.signup = function(req, res, next) {
 				// no other user with these credentials, attempt to add to database
 
 				// Type is set in the referring user controller: sellersignup or signup
-				user.addNewUser({ 'type': req.session.user.signupType, 'email': req.body.email, 'password': hashedpassword }, function(err) {
+				user.addNewUser({ 'type': req.body.userType,'first_name': req.body.firstName,'last_name': req.body.lastName, 'email': req.body.email, 'password': hashedpassword }, function(err) {
 					if(err) {
 						// database error
 						req.session.user.signup = false;
@@ -68,6 +68,7 @@ exports.signup = function(req, res, next) {
 					else {
 						// user successfully created
 						req.session.user.signup = true;
+						req.session.user.signupType = req.body.userType;
 						next();
 					}
 				});

@@ -62,17 +62,6 @@ router.get('/logout', function(req, res, next) {
  * (User has clicked on the signup link)
  */
 router.get('/signup', function(req, res, next) {
-	req.session.user.signupType = constants.BUYER; // Create buyer account type
-	res.render('user/signup', { userData: req.session.user });
-});
-
-/*
- * GET request to seller signup page
- * Render signup page where seller may signup/create an account
- * (User has clicked on the seller link)
- */
-router.get('/sellersignup', function(req, res, next) {
-	req.session.user.signupType = constants.SELLER; // Create seller account type
 	res.render('user/signup', { userData: req.session.user });
 });
 
@@ -108,6 +97,14 @@ router.get('/dashboard', function(req, res, next) {
 				res.redirect('../home');
 			}
 			else{
+				// Convert image blobs to base64 encoded strings
+				for(var i = 0; i < data.length; i++) {
+					if(data[i].image == null){
+						continue;
+					}
+					var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
+					data[i].image = 'data:image/png;base64,' + imgstr;
+				}
 				res.render('user/dashboard', { userData: req.session.user, data: data });
 			}
 		});
@@ -130,7 +127,6 @@ router.get('/addListingPage', function(req, res, next){
 
 router.post('/addListing', function(req, res, next){
 	if(req.session.user.id){
-		var listingParams = req.body;
 		users.addListing(req.body, req.session.user.id, function(err, data){
 			if(err){
 				res.redirect('../home');
@@ -141,6 +137,14 @@ router.post('/addListing', function(req, res, next){
 						res.redirect('../home');
 					}
 					else{
+						// Convert image blobs to base64 encoded strings
+						for(var i = 0; i < data.length; i++) {
+							if(data[i].image == null){
+								continue;
+							}
+							var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
+							data[i].image = 'data:image/png;base64,' + imgstr;
+						}
 						res.render('user/dashboard', { userData: req.session.user, data: data });
 					}
 				});
