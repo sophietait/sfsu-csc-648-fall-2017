@@ -48,8 +48,20 @@ exports.getUserById = function(id, cb) {
  */
 exports.addNewUser = function(q, cb) {
 	var sql = "INSERT INTO user(user_type, first_name, last_name, email, user_password, phone, i_agree) ";
-		sql += "VALUES(?, '', '', ?, ?, 0, 1)";
-	db.runqueryEscaped(sql, [q.type, q.email, q.password], cb);
+		sql += "VALUES(?, ?, ?, ?, ?, 0, 1)";
+	db.runqueryEscaped(sql, [q.type, q.first_name, q.last_name, q.email, q.password], cb);
+}
+
+exports.addListing = function(listingParams, userID, cb) {
+	var sql = "INSERT INTO listing(address, state, city, zipcode, price, posted_on, bedroom_count, bathroom_count, pool, ac, heater, floor_size, parking, seller_id, image) ";
+		sql += "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	db.runqueryEscaped(sql, [listingParams.address, listingParams.state, listingParams.city, listingParams.zipcode, listingParams.price, (new Date()).toISOString().substring(0, 10),listingParams.bedroom, listingParams.bathroom, listingParams.pool, listingParams.ac, listingParams.heater, listingParams.floor, listingParams.parking, userID, listingParams.image], cb);
+}
+
+exports.getSellerListings = function(user, cb){
+	var sql = "SELECT image, listing_id, address FROM listing ";
+		sql += "WHERE listing.seller_id = ?";
+		db.runqueryEscaped(sql,	[user.id], cb);
 }
 
 /*

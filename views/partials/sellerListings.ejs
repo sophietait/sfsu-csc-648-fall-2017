@@ -1,0 +1,20 @@
+<div class="col-sm-12">
+        <% if(data != null){ %>
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Address</th>
+                            <th>Image</th>
+                            <th>Listing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% for(var i=0; i<data.length;i++) { %>
+                        <tr>
+                            <td><%= data[i].address %></td>
+                            <td><img style="width: 50px; height: 50px; " alt="IMAGE N/A" src="<%= data[i].image %>"/></td>
+                            <td><a href="listing/<%= data[i].listing_id %>" class="btn btn-primary">View Listing</a></td>
+                        </tr>
+                    <% } %>
+        <% } %>
+    </div>
