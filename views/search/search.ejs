@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css" type = "text/css"> </link>
+		<link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css" type = "text/css">
+        <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="stylesheets/main.css" type = "text/css">
@@ -11,37 +12,12 @@
 	</head>
 
 	<body>
+        <% include ../partials/disclaimer.ejs %>
+        <% include ../partials/navbar.ejs %>
 		<div class="container text-center">
 
-			<!-- display page header-->
-			<div class="row">
-				<div class="col-sm-12 page-header">
-					<h3 style ="text-align: center; color: blue; ">SFSU Software Engineering Project, Fall 2017.  For Demonstration Only</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<h1 class="text-center">Software Engineering class SFSU<p>Fall 2017</p><p>Section 2</p><p>Team 5</p></h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-
-					<!-- Link to home page -->
-					<a href="home"><button type="button" class="btn btn-primary">Home Page</button></a>
-
-					<!-- Link to about page -->
-					<a href="about"><button type="button" class="btn btn-primary">About Page</button></a>
-
-					<!-- Search bar -->
-					<form action="search" method="get">
-						<input type="text" name="search_text" id = "search_box" value = "<%=pass_search_text%>"><br>
-						<input type="submit" value="Search" id ="search_button">
-					</form>
-					<!-- end Search bar -->
-
-				</div>
-			</div>
+            <% include ../partials/searchbar.ejs %>
+			
 			<div class="row">
 				<div class="dropdown col-sm-4">
 				    <button id = "sort-by-price" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" value="<%=pass_price_count%>">Price
