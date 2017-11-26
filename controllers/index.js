@@ -33,7 +33,8 @@ router.get('/home', function(req, res, next) {
 		res.render('home', {
 			title: 'Dream Home',
 			userData: req.session.user,
-			featuredListings: listingData
+			featuredListings: listingData,
+			pass_search_text: ""
 		});
 	});
 });
