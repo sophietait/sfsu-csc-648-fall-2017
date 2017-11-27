@@ -1,6 +1,6 @@
 body {
     font-family:Arial, Helvetica, sans-serif;
-    background-color:#FFFCF7;
+    background-color:white;
                
                 
 }
@@ -14,7 +14,7 @@ body {
 .disclaimer {
     width:100%;
     text-align:center;
-    background-color:#F46036;
+    background-color:#B0D7FF;
     font-size:large;
     z-index:99;
 }
@@ -39,13 +39,12 @@ body {
 #welcome {
     margin-top:-22px;
     padding-bottom:160px;
-    background-image:url("../images/welcome.jpeg");
-    background-position:50% 0%;
+    background-image:url("../images/san_francisco.jpg");
     background-size:cover;
 }
 
 #welcome h1 {
-    color:#FAA916;
+    color:white;
     font-size:60px;
     text-shadow:2px 2px 4px #000000;
 }
@@ -54,9 +53,47 @@ body {
     max-width:800px;
     font-size:25px;
     margin:0 auto;
-    color:#ffffff;
+    color:white;
     text-shadow:2px 2px 4px #000000;
 }
+
+#about {
+    margin-top:-22px;
+    padding-bottom:160px;
+    background-image:url("../images/about.jpg");
+    background-position:50% 0%;
+    background-size:cover;
+}
+
+#about h1 {
+    color:white;
+    font-size:60px;
+    text-shadow:2px 2px 4px #000000;
+}
+#about h2 {
+    color:white;
+    font-size:30px;
+    text-shadow:2px 2px 4px #000000;
+}
+
+.button {
+    background-color: transparent;
+    color:white;
+    font-size:60px;
+    text-shadow:2px 2px 4px #000000;
+    border: 2px solid black;
+    border-radius: 30px;
+    box-shadow: 2px 2px 4px #455A64;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    
+}
+
 
 .search-form {
     margin:40px 5px;
