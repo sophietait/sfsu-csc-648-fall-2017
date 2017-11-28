@@ -4,39 +4,15 @@
 		<meta charset="utf-8">
 		<link rel = "stylesheet" href="../bootstrap/css/bootstrap.min.css" type = "text/css"> </link>
 		<link rel="stylesheet" href="../stylesheets/main.css" type = "text/css">
+                <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+                <script src = "../bootstrap/js/jquery.min.js"></script>
+                <script src = "../bootstrap/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<div class="container text-center">
-			<div class="row">
-				<div class="col-sm-12 page-header">
-					<h3 style ="text-align: center; color: blue; ">SFSU Software Engineering Project, Fall 2017.  For Demonstration Only</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<h1 class="text-center">Software Engineering class SFSU<p>Fall 2017</p><p>Section 2</p><p>Team 5</p></h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-
-					<!-- The following buttons/links will be moved to the navbar -->
-					<!-- Link to home page -->
-					<a href="../home"><button type="button" class="btn btn-primary">Home</button></a>
-					<!-- Link to about page -->
-					<a href="../about"><button type="button" class="btn btn-primary">About Page</button></a>
-					<!-- Link to logout -->
-					<a href="logout"><button type="button" class="btn btn-primary">Logout</button></a>
-					<!-- Link to signup page -->
-					<a href="signup"><button type="button" class="btn btn-primary">Signup</button></a>
-					<!-- Link to user dashboard page -->
-					<a href="dashboard"><button type="button" class="btn btn-primary">Dashboard</button></a>
-					<!-- Link to browse page -->
-					<a href="../browse"><button type="button" class="btn btn-primary">Browse</button></a>
-
-				</div>
-			</div>
-
+            <% include ../partials/disclaimer.ejs %>
+            <% include ../partials/navbar.ejs %>
+             
+                <h1> Seller Sign up </h1>
 			<!-- signup form -->
 			<div class="row">
 				<div class="col-sm-12">
@@ -77,7 +53,7 @@
 				</div>
 			</div>
 			<!-- end signupform -->
-
+                        
 		</div>
 	</body>
 

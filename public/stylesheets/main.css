@@ -1,8 +1,6 @@
 body {
     font-family:Arial, Helvetica, sans-serif;
-    background-color:#FFFCF7;
-               
-                
+    background-color:white;
 }
 
 /* For Google Maps */
@@ -14,15 +12,9 @@ body {
 .disclaimer {
     width:100%;
     text-align:center;
-    background-color:#F46036;
+    background-color:#B0D7FF;
     font-size:large;
     z-index:99;
-}
-
-.navbar.navbar-inverse {
-    margin-top:-12px;
-    border-color:#2E294E;
-    background-color:#2E294E;
 }
 
 .site-section {
@@ -39,13 +31,12 @@ body {
 #welcome {
     margin-top:-22px;
     padding-bottom:160px;
-    background-image:url("../images/welcome.jpeg");
-    background-position:50% 0%;
+    background-image:url("../images/san_francisco.jpg");
     background-size:cover;
 }
 
 #welcome h1 {
-    color:#FAA916;
+    color:white;
     font-size:60px;
     text-shadow:2px 2px 4px #000000;
 }
@@ -54,9 +45,47 @@ body {
     max-width:800px;
     font-size:25px;
     margin:0 auto;
-    color:#ffffff;
+    color:white;
     text-shadow:2px 2px 4px #000000;
 }
+
+#about {
+    margin-top:-22px;
+    padding-bottom:160px;
+    background-image:url("../images/about.jpg");
+    background-position:50% 0%;
+    background-size:cover;
+}
+
+#about h1 {
+    color:white;
+    font-size:60px;
+    text-shadow:2px 2px 4px #000000;
+}
+#about h2 {
+    color:white;
+    font-size:30px;
+    text-shadow:2px 2px 4px #000000;
+}
+
+.button {
+    background-color: transparent;
+    color:white;
+    font-size:60px;
+    text-shadow:2px 2px 4px #000000;
+    border: 2px solid black;
+    border-radius: 30px;
+    box-shadow: 2px 2px 4px #455A64;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    
+}
+
 
 .search-form {
     margin:40px 5px;
@@ -123,6 +152,7 @@ body {
 
 
 .navbar {
+	margin-top: -11px;
  	background: -moz-linear-gradient(269deg, rgba(171,208,208,1) 0%, rgba(255,252,247,1) 100%); /* ff3.6+ */
  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(171,208,208,1)), color-stop(100%, rgba(255,252,247,1))); /* safari4+,chrome */
  	background: -webkit-linear-gradient(269deg, rgba(171,208,208,1) 0%, rgba(255,252,247,1) 100%); /* safari5.1+,chrome10+ */
@@ -196,4 +226,175 @@ div.icon-bar{
 #logout:hover{
     font-size: 12px;
     color:red;
-}            
+}
+
+.listing-element {
+    border-radius:4px;
+    margin:10px 15px;
+    padding:20px;
+    box-shadow:1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.contact-clean form {
+    max-height:286px;
+    max-width:300px;
+    margin:0 auto;
+    background-color:#ffffff;
+    padding:20px;
+    border-radius:4px;
+    color:#505e6c;
+    box-shadow:1px 1px 5px rgba(0,0,0,0.5);
+}
+
+@media (max-width:767px) {
+    .contact-clean form {
+        padding:30px;
+    }
+}
+
+.contact-clean h2 {
+    margin-top:5px;
+    font-weight:bold;
+    font-size:28px;
+    margin-bottom:25px;
+    color:inherit;
+}
+
+.contact-clean form {
+    padding-bottom:80px;
+}
+
+.contact-clean .form-group:last-child {
+    margin-bottom:5px;
+}
+
+.contact-clean form .form-control {
+    background:#fff;
+    border:1px solid #d4d4d4;
+    border-radius:2px;
+    box-shadow:1px 1px 1px rgba(0,0,0,0.05);
+    outline:none;
+    color:inherit;
+    padding-left:12px;
+    height:42px;
+}
+
+.contact-clean form .form-control:focus {
+    border:1px solid #b2b2b2;
+}
+
+.contact-clean form textarea.form-control {
+    min-height:100px;
+    max-height:260px;
+    padding-top:10px;
+    resize:vertical;
+}
+
+.contact-clean form .form-control-feedback {
+    height:42px;
+    line-height:42px;
+}
+
+.contact-clean form .help-block {
+    margin-top:8px;
+    font-size:13px;
+}
+
+.contact-clean form .btn {
+    float:right;
+    padding:16px 32px;
+    border:none;
+    background:none;
+    box-shadow:none;
+    text-shadow:none;
+    opacity:0.9;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:0.4px;
+    line-height:1;
+    outline:none !important;
+}
+
+.contact-clean form .btn:hover {
+    opacity:1;
+}
+
+.contact-clean form .btn:active {
+    transform:translateY(1px);
+}
+
+.contact-clean form .btn-primary {
+    background-color:#055ada !important;
+    color:#fff;
+}
+
+.carousel-inner {
+    position:relative;
+    width:100%;
+    height:286px;
+    overflow:hidden;
+}
+
+@media (max-width: 991px) {
+    .house-property {
+        text-align:center;
+        margin:25px 0;
+        font-size:25px;
+    }
+}
+
+.house-property {
+    margin:25px 0;
+    font-size:25px;
+}
+
+#address {
+    font-weight:bold;
+}
+
+#price {
+    font-weight:bold;
+}
+
+.footer-basic {
+    padding:30px 0;
+    background-color:#ffffff;
+    color:#4b4c4d;
+}
+
+.footer-basic ul {
+    padding:0;
+    list-style:none;
+    text-align:center;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:0;
+}
+
+.footer-basic li {
+    padding:0 10px;
+}
+
+.footer-basic ul a {
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+}
+
+.footer-basic ul a:hover {
+    opacity:1;
+}
+
+.footer-basic .social > a:hover {
+    opacity:0.9;
+}
+
+.footer-basic .copyright {
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color:#aaa;
+    margin-bottom:0;
+}
+
