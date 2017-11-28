@@ -10,14 +10,16 @@
                 <span class="icon-bar"></span>
                 </button>
                 
-                <a class = "navbar-brand" href = "/home">Dream Home</a>
+                <a class = "navbar-brand" href = "home">Dream Home</a>
             </div>
                     
             <div class = "collapse navbar-collapse" id ="nav" >   
             
               <ul class="nav navbar-nav navbar-right">
                 <li><a href = "/about">About</a></li>
-                <li><a href="/user/signup">Seller</a></li>
+                <li><a href="/user/sellersignup">Seller</a></li>
+                  
+                <% if(userData.type === 0 || userData.type === 1) { %>
                 <li class="dropdown" id = "login">
                   <a href="#" data-toggle="dropdown" class="dropdown-toggle">Login</a>
                     <div class="dropdown-menu" id="formLogin">
@@ -38,10 +40,11 @@
                                 </form>
                             </div>
                         </div>
-                        <a href="/user/logout" id = "logout">Log Out</a>
                     </div>
-                </li>    
-
+                </li>  
+                <% }else{ %>
+                <li id = "logout"><a href="/user/logout" id = "logout">Log Out</a></li>
+                <% } %>  
 				<li><a href="/user/dashboard">Dashboard</a></li>
 
               </ul>
