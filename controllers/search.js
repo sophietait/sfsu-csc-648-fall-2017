@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
 		else {
 			// Convert image blobs to base64 encoded strings
 			for(var i = 0; i < data.length; i++) {
-				if(data[i].image == null){
+				if(data[i].thumbnail == null){
 					continue;
 				}
-				var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
-				data[i].image = 'data:image/png;base64,' + imgstr;
+				var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
+				data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 			}
 		}
 		// pass JSON data from search controller to search view
@@ -33,11 +33,11 @@ router.get('/sortByPriceBedBath', function(req,res,next){
 		}
 		else{
 			for(var i=0; i<data.length;i++){
-				if(data[i].image == null){
+				if(data[i].thumbnail == null){
 					continue;
 				}
-				var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
-				data[i].image = 'data:image/png;base64,' + imgstr;
+				var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
+				data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 			}
 			res.render('partials/searchResults.ejs', {layout: true, data: data});
 		}

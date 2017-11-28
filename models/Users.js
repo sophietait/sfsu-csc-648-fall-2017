@@ -53,13 +53,25 @@ exports.addNewUser = function(q, cb) {
 }
 
 exports.addListing = function(listingParams, userID, cb) {
-	var sql = "INSERT INTO listing(address, state, city, zipcode, price, posted_on, bedroom_count, bathroom_count, pool, ac, heater, floor_size, parking, seller_id, image) ";
-		sql += "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	db.runqueryEscaped(sql, [listingParams.address, listingParams.state, listingParams.city, listingParams.zipcode, listingParams.price, (new Date()).toISOString().substring(0, 10),listingParams.bedroom, listingParams.bathroom, listingParams.pool, listingParams.ac, listingParams.heater, listingParams.floor, listingParams.parking, userID, listingParams.image], cb);
+	var sql = "INSERT INTO listing(address, state, city, zipcode, price, posted_on, bedroom_count, bathroom_count, pool, ac, heater, floor_size, parking, seller_id, image, thumbnail) ";
+		sql += "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	db.runqueryEscaped(sql, [listingParams.address, listingParams.state, listingParams.city, listingParams.zipcode, listingParams.price, (new Date()).toISOString().substring(0, 10),listingParams.bedroom, listingParams.bathroom, listingParams.pool, listingParams.ac, listingParams.heater, listingParams.floor, listingParams.parking, userID, listingParams.image, listingParams.thumbnail], cb);
 }
 
+exports.deleteListing = function(listingId, cb) {
+	var sql = "DELETE FROM listing ";
+		sql += "WHERE listing_id = ?";
+	db.runqueryEscaped(sql, [listingId], cb);
+}
+
+/*
+ * getSellerListings
+ * user is a user object
+ * Used to get the listings that a given seller has posted
+ * Uses image thumbnail
+ */
 exports.getSellerListings = function(user, cb){
-	var sql = "SELECT image, listing_id, address FROM listing ";
+	var sql = "SELECT thumbnail, listing_id, address FROM listing ";
 		sql += "WHERE listing.seller_id = ?";
 		db.runqueryEscaped(sql,	[user.id], cb);
 }
