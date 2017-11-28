@@ -151,7 +151,7 @@ router.post('/addListing', function(req, res, next){
 			thumb({
 				source: files.image.path,
 				destination: __dirname + '/../public/uploads', // temporary dir for thumbnail
-				width: 100, // image thumnail width
+				width: 200, // image thumnail width
 				quiet: true
 			}, function(imgfiles, err, stdout, stderr) {
 				if(err) {
