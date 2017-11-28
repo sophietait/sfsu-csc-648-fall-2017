@@ -219,15 +219,6 @@ div.icon-bar{
 
 
 
-#logout{
-    font-size: 12px;
-}
-
-#logout:hover{
-    font-size: 12px;
-    color:red;
-}
-
 .listing-element {
     border-radius:4px;
     margin:10px 15px;
@@ -396,4 +387,31 @@ div.icon-bar{
     font-size:13px;
     color:#aaa;
     margin-bottom:0;
+}
+
+.searchResults{
+    padding-top:20px;
+}
+
+.thumbnail{
+    background-color: rgba(108, 174, 224,.5);
+    
+}
+
+.thumbnail ul{
+    list-style-type: none;
+    padding-left:0;
+}
+   
+   
+.ad{
+    font-size: 12px;
+}
+    
+.details{
+  font-size: 14px;
+}
+
+.pr{
+    font-size: 30px;
 }

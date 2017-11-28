@@ -1,31 +1,32 @@
-<!-- data variable is passed in from the search controller -->
-<table class="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Bedroom Count</th>
-                <th>Bathroom Count</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zip Code</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-        <% for(var i = 0; i < data.length; i++) { %>
-            <tr>
-                <td><img alt="IMAGE N/A" src="<%= data[i].thumbnail %>"/></td>
-                <td><%= data[i].bedroom_count %></td>
-                <td><%= data[i].bathroom_count %></td>
-                <td><%= data[i].address %></td>
-                <td><%= data[i].city %></td>
-                <td><%= data[i].state %></td>
-                <td><%= data[i].zipcode %></td>
-                <td><%= data[i].price %></td>
-                <!-- button to view listing -->
-                <td><a href="listing/<%= data[i].listing_id %>" class="btn btn-primary">View Listing</a></td>
-            </tr>
-        <% } %>
-        </tbody>
-        </table>
+<!-- data variable is passed in from the search controller --> 
+
+<% for(var i = 0; i < data.length; i++){ %>
+
+<div class = "col-sm-6 col-md-3">
+      <div class = "thumbnail">
+          <a href = "listing/<%= data[i].listing_id %>">
+         <img src = "<%= data[i].thumbnail %>" alt = "Image N/A">
+      
+        
+        <ul class = "list-inline">
+            <li class = "pr"><%= data[i].price %></li>
+            <li>
+                <ul class = "list-inline">
+                    <li class = "details"><%= data[i].bedroom_count %> bd</li>
+                    <li class = "details"><%= data[i].bathroom_count %> ba</li>
+                </ul>
+            </li>
+        </ul>
+        
+            <p> <%= data[i].address %>, <%= data[i].city %>, <%= data[i].state %></p>
+          </a>
+          <a href="#" class="btn btn-default" role="button">Contact</a>
+         
+          
+      </div>
+   </div>
+
+
+
+
+<% } %>
