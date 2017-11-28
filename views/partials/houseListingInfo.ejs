@@ -1,0 +1,53 @@
+<div class="listing-element">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- House Images -->
+                <% include partials/listingImageCarousel.ejs %>
+            </div>
+            <!-- Contacting Agent -->
+            <% include partials/contactMessageBox.ejs %>
+        </div>
+        <!-- Details of house -->
+        <div class="house-property">
+            <div class="row">
+                <div class="col-md-9" id="address">
+                    <p><%= addressString %></p>
+                </div>
+                <div class="col-md-3" id="price">
+                    <p>$<%= listingData.price %></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" id="beds">
+                    <p>Beds: <%= listingData.bedroom_count %></p>
+                </div>
+                <div class="col-md-3" id="baths">
+                    <p>Baths: <%= listingData.bathroom_count %></p>
+                </div>
+                <div class="col-md-3" id="lot-size">
+                    <p>Sqft: <%= listingData.floor_size %></p>
+                </div>
+                <div class="col-md-3">
+                    <p>Price/Sqft: </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" id="beds">
+                    <p>Parking: Yes <%= listingData.parking %></p>
+                </div>
+                <div class="col-md-3" id="baths">
+                    <p>Heater: Yes <%= listingData.heater %></p>
+                </div>
+                <div class="col-md-3" id="lot-size">
+                    <p>A/C: Yes <%= listingData.ac %></p>
+                </div>
+                <div class="col-md-3">
+                    <p>Pool: Yes <%= listingData.pool %></p>
+                </div>
+            </div>
+        </div>
+        <!-- Google maps -->
+        <%- include ../partials/googlemaps.ejs %>
+    </div>
+</div>
