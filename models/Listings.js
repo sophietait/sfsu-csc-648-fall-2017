@@ -17,9 +17,10 @@ exports.getAllListings = function(cb) {
 /*
  * getListingsBySearch
  * Get listings that are LIKE the user's search. 
+ * Uses image thumbnail
  */
 exports.getListingsBySearch = function(search_text, cb) {
-	var sql = "SELECT listing_id, image, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
+	var sql = "SELECT listing_id, thumbnail, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
 		sql += "FROM listing ";
 		sql += "WHERE ";
 		sql += "LOWER(state) LIKE LOWER(?) OR ";
@@ -31,6 +32,11 @@ exports.getListingsBySearch = function(search_text, cb) {
 
 }
 
+/*
+ * getListingsById
+ * Get listings for the purpose of displaying the listing's detail page
+ * Gets full image from database
+ */
 exports.getListingsById = function(id, cb) {
 	var sql = "SELECT listing.image, listing.address, listing.city, listing.state, listing.zipcode, listing.price, listing.posted_on, listing.bedroom_count, listing.bathroom_count, listing.pool, listing.ac, listing.heater, listing.floor_size, listing.parking, listing.seller_id, user.first_name, user.last_name ";
 		sql += "FROM listing, user ";
@@ -71,7 +77,7 @@ exports.getDefaultListings = function(cb) {
 }
 
 exports.sortByPriceBedBath = function(search_text, sortByPrice, bedroomValue, bathroomValue, cb){
-	var sql = "SELECT listing_id, image, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
+	var sql = "SELECT listing_id, thumbnail, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
 	sql += "FROM listing ";
 	sql += "WHERE ";
 	sql += "(bedroom_count >= "+bedroomValue+" AND ";
@@ -96,13 +102,27 @@ exports.applyFilter = function(search_text,cb){
 /*
  * getFeaturedListings
  * Get four listings to display as featured listings
+ * Uses image thumbnail
  */
 exports.getFeaturedListings = function(cb) {
-	var sql = "SELECT listing_id, image, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
+	var sql = "SELECT listing_id, thumbnail, bedroom_count, bathroom_count, address, city, state, zipcode, price ";
 		sql += "FROM listing ";
 		sql += "ORDER BY price DESC ";
 		sql += "LIMIT 4 ";
 	db.runquery(sql, cb); // Send query string and callback function
+}
+
+/*
+ * getListingByListingSeller
+ * Used to verify that a specific Seller has listed a specific Listing.
+ * No need to return actual listing details. 
+ */
+exports.getListingByListingSeller = function(SellerId, ListingId, cb) {
+	var sql = "SELECT listing_id ";
+		sql += "FROM listing ";
+		sql += "WHERE seller_id = ? AND ";
+		sql += "listing_id = ?";
+	db.runqueryEscaped(sql, [SellerId, ListingId], cb);
 }
 
 
