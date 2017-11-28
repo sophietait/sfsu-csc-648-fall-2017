@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "ajax-request": "^1.2.3",
-    "body-parser": "~1.17.1",
+    "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
@@ -15,10 +15,12 @@
     "express": "~4.15.2",
     "express-logging": "^1.1.1",
     "express-session": "^1.15.6",
+    "formidable": "^1.1.1",
     "jQuery": "^1.7.4",
     "jquery": "^3.2.1",
     "morgan": "~1.8.1",
     "mysql": "^2.15.0",
+    "node-thumbnail": "^0.12.0",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {

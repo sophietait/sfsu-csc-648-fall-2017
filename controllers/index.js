@@ -23,17 +23,18 @@ router.get('/home', function(req, res, next) {
 		else {
 			// convert image blobs to base64 encoded strings
 			for(var i = 0; i < listingData.length; i++) {
-				if(listingData[i].image == null) {
+				if(listingData[i].thumbnail == null) {
 					continue;
 				}
-				var imgstr = new Buffer(listingData[i].image, 'binary').toString('base64');
-				listingData[i].image = 'data:image/png;base64,' + imgstr;
+				var imgstr = new Buffer(listingData[i].thumbnail, 'binary').toString('base64');
+				listingData[i].thumbnail = 'data:image/png;base64,' + imgstr;
 			}
 		}
 		res.render('home', {
 			title: 'Dream Home',
 			userData: req.session.user,
-			featuredListings: listingData
+			featuredListings: listingData,
+			pass_search_text: ""
 		});
 	});
 });
