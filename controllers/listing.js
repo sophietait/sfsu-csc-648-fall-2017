@@ -28,7 +28,8 @@ router.get('/:id(\\d+)', function(req, res, next) {
 					title: 'Dream Home',
 					userData: req.session.user,
 					listingData: listingData[0],
-					addressString: addressString
+					addressString: addressString,
+					pass_search_text: req.query.search_text || ""
 				});	
 			});
 
@@ -46,13 +47,28 @@ router.get('/:id(\\d+)', function(req, res, next) {
 					var imgstr = new Buffer(listingData[0].image, 'binary').toString('base64');
 					listingData[0].image = 'data:image/png;base64,' + imgstr;
 				}
-				res.render('listing/listing', { userData: req.session.user, listingData: listingData[0], addressString: addressString });
+				res.render('listing/listing', { 
+					userData: req.session.user, 
+					listingData: listingData[0], 
+					addressString: addressString,
+					pass_search_text: req.query.search_text || ""
+				});
 			}
 			else {
 				next(); // stop handling request for invalid listing
 			}
 		}
 	});
+});
+
+/*
+ * POST request to specific listing page
+ * User is trying to contact the seller
+ * If user is logged in: send message to listing seller
+ * Else prompt the user to log in or register
+ */
+router.post('/:id(\\d+)', function(req, res, next) {
+	res.redirect('back'); // temporary; do nothing
 });
 
 module.exports = router;
