@@ -10,7 +10,8 @@
 	<%- include ../partials/disclaimer.ejs %>
 	<%- include ../partials/navbar.ejs %>
 	<div>
-		<button class="btn" type="submit">Back </button>
+		<!-- Go back (resubmit search) -->
+		<a onclick="javascript:history.back()" class="btn btn-primary">Back </a>
 	</div>
         <%- include ../partials/searchbar.ejs %>
         <%- include ../partials/houseListingInfo.ejs %>
