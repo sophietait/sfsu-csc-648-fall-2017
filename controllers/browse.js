@@ -17,7 +17,7 @@ router.get('/city', function(req, res, next){
 			for(var i =0 ; i < data.length; i++){
 				data[i] = data[i].city;
 			}
-			    res.render('browse/result' , {data: data});
+			    res.render('browse/result' , { data: data, userData: req.session.user });
 		}
 		
 	});
@@ -33,7 +33,7 @@ router.get('/state', function(req, res, next){
 			for(var i =0 ; i < data.length; i++){
 				data[i] = data[i].state;
 			}
-			res.render('browse/result' , {data: data});
+			res.render('browse/result' , {data: data, userData: req.session.user });
 		}
 	});
 });
@@ -48,7 +48,7 @@ router.get('/zipcode', function(req, res, next){
 			for(var i = 0; i < data.length; i++){
 				data[i] = data[i].zipcode;
 			}
-			res.render('browse/result' , {data: data});
+			res.render('browse/result' , {data: data, userData: req.session.user });
 		}
 	});
 });
