@@ -12,15 +12,40 @@ router.get('/', function(req, res, next) {
 		else {
 			// Convert image blobs to base64 encoded strings
 			for(var i = 0; i < data.length; i++) {
-				if(data[i].image == null){
+				if(data[i].thumbnail == null){
 					continue;
 				}
-				var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
-				data[i].image = 'data:image/png;base64,' + imgstr;
+				var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
+				data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 			}
 		}
-		// pass JSON data from search controller to search view
-		res.render('search/search', { userData: req.session.user, data: data, pass_search_text: req.query.search_text, pass_price_count: 0, pass_bedroom_count: 0, pass_bathroom_count: 0 });
+		
+		// Get featured listings
+		listings.getFeaturedListings(function(err, featuredListings) {
+			if(err) {
+				featuredListings = []; // Set featuredListings on database error
+			}
+			else {
+				// Convert image blobs to base64 encoded strings
+				for(var i = 0; i < featuredListings.length; i++) {
+					if(featuredListings[i].thumbnail == null) {
+						continue;
+					}
+					var imgstr = new Buffer(featuredListings[i].thumbnail, 'binary').toString('base64');
+					featuredListings[i].thumbnail = 'data:image/png;base64,' + imgstr;
+				}
+			}
+			// pass JSON data from search controller to search view
+			res.render('search/search', { 
+				userData: req.session.user, 
+				data: data, 
+				featuredListings: featuredListings,
+				pass_search_text: req.query.search_text, 
+				pass_price_count: 0, 
+				pass_bedroom_count: 0, 
+				pass_bathroom_count: 0 
+			});
+		});
 	});
 });
 
@@ -33,11 +58,11 @@ router.get('/sortByPriceBedBath', function(req,res,next){
 		}
 		else{
 			for(var i=0; i<data.length;i++){
-				if(data[i].image == null){
+				if(data[i].thumbnail == null){
 					continue;
 				}
-				var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
-				data[i].image = 'data:image/png;base64,' + imgstr;
+				var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
+				data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 			}
 			res.render('partials/searchResults.ejs', {layout: true, data: data});
 		}

@@ -24,9 +24,9 @@
 				    	<span class="caret"></span>
 				    </button>
 				    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li class = "price" value = "0" role="presentation"><a role="menuitem" tabindex="-1" href="#"><-- Filter by Price --></a></li>
-					    <li class = "price" value = "1" role="presentation"><a role="menuitem" tabindex="-1" href="#">Low-High</a></li>
-					    <li class = "price" value = "2" role="presentation"><a role="menuitem" tabindex="-1" href="#">High-Low</a></li>
+						<li class = "price" value = "0" role="presentation"><a role="menuitem" tabindex="-1" href="#!"><-- Filter by Price --></a></li>
+					    <li class = "price" value = "1" role="presentation"><a role="menuitem" tabindex="-1" href="#!">Low-High</a></li>
+					    <li class = "price" value = "2" role="presentation"><a role="menuitem" tabindex="-1" href="#!">High-Low</a></li>
 				    </ul>
 				</div>
 				<div class="dropdown col-sm-4">
@@ -34,11 +34,11 @@
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li class = "bedroom" role="presentation" value="0"><a role="menuitem" tabindex="-1" href="#"><-- Filter by Bedroom Count--></a></li>
-						<li class = "bedroom" role="presentation" value="1"><a role="menuitem" tabindex="-1" href="#">1+</a></li>
-						<li class = "bedroom" role="presentation" value="2"><a role="menuitem" tabindex="-1" href="#">2+</a></li>
-						<li class = "bedroom" role="presentation" value="3"><a role="menuitem" tabindex="-1" href="#">3+</a></li>
-						<li class = "bedroom" role="presentation" value="4"><a role="menuitem" tabindex="-1" href="#">4+</a></li>
+						<li class = "bedroom" role="presentation" value="0"><a role="menuitem" tabindex="-1" href="#!"><-- Filter by Bedroom Count--></a></li>
+						<li class = "bedroom" role="presentation" value="1"><a role="menuitem" tabindex="-1" href="#!">1+</a></li>
+						<li class = "bedroom" role="presentation" value="2"><a role="menuitem" tabindex="-1" href="#!">2+</a></li>
+						<li class = "bedroom" role="presentation" value="3"><a role="menuitem" tabindex="-1" href="#!">3+</a></li>
+						<li class = "bedroom" role="presentation" value="4"><a role="menuitem" tabindex="-1" href="#!">4+</a></li>
 					</ul>
 				</div>
 				<div class="dropdown col-sm-4">
@@ -46,22 +46,34 @@
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li class = "bathroom" role="presentation" value="0"><a role="menuitem" tabindex="-1" href="#"><-- Filter by Bathroom Count--></a></li>
-						<li class = "bathroom" role="presentation" value="1"><a role="menuitem" tabindex="-1" href="#">1+</a></li>
-						<li class = "bathroom" role="presentation" value="2"><a role="menuitem" tabindex="-1" href="#">2+</a></li>
-						<li class = "bathroom" role="presentation" value="3"><a role="menuitem" tabindex="-1" href="#">3+</a></li>
-						<li class = "bathroom" role="presentation" value="4"><a role="menuitem" tabindex="-1" href="#">4+</a></li>
+						<li class = "bathroom" role="presentation" value="0"><a role="menuitem" tabindex="-1" href="#!"><-- Filter by Bathroom Count--></a></li>
+						<li class = "bathroom" role="presentation" value="1"><a role="menuitem" tabindex="-1" href="#!">1+</a></li>
+						<li class = "bathroom" role="presentation" value="2"><a role="menuitem" tabindex="-1" href="#!">2+</a></li>
+						<li class = "bathroom" role="presentation" value="3"><a role="menuitem" tabindex="-1" href="#!">3+</a></li>
+						<li class = "bathroom" role="presentation" value="4"><a role="menuitem" tabindex="-1" href="#!">4+</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<!-- Display table of search results using ejs  -->
-					<div class="table-responsive" id="searchResultsTable">
-						<% include ../partials/searchResults.ejs %>
+
+			<p>Your search returned <%= data.length %> results</p>
+
+			<!-- If zero listings were found, display featured listings -->
+			<% if(data.length !== 0) { %>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- Display table of search results using ejs  -->
+						<div class="table-responsive" id="searchResultsTable">
+							<% include ../partials/searchResults.ejs %>
+						</div>
 					</div>
 				</div>
-			</div>
+
+			<% } else { %>
+
+				<%- include ../partials/featured_homes.ejs %>
+
+			<% } %>
 
 		</div>
 	</body>

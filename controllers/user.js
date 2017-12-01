@@ -7,12 +7,14 @@
 var express = require('express');
 var formidable = require('formidable');
 var fs = require('fs');
+var thumb = require('node-thumbnail').thumb;
 var router = express.Router();
 
 var auth = require('../middlewares/authentication');
 const constants = require('../helpers/constants');
 
 var users = require('../models/Users');
+var listings = require('../models/Listings');
 
 /*
  * Render login page where existing user may login
@@ -97,11 +99,11 @@ router.get('/dashboard', function(req, res, next) {
 			else{
 				// Convert image blobs to base64 encoded strings
 				for(var i = 0; i < data.length; i++) {
-					if(data[i].image == null){
+					if(data[i].thumbnail == null){
 						continue;
 					}
-					var imgstr = new Buffer(data[i].image, 'binary').toString('base64');
-					data[i].image = 'data:image/png;base64,' + imgstr;
+					var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
+					data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 				}
 				res.render('user/dashboard', { userData: req.session.user, data: data });
 			}
@@ -126,44 +128,97 @@ router.get('/addListingPage', function(req, res, next){
 router.post('/addListing', function(req, res, next){
 	if(req.session.user.id){
 
-		var form = new formidable.IncomingForm();
+		var form = new formidable.IncomingForm(); // Get form data from addListing page
 		form.uploadDir = __dirname + '/../public/uploads'; // temporary upload dir for images
 		form.keepExtensions = true; // keep image file extensions
 
 		// Parse addListing form with formidable
 		form.parse(req, function(err, fields, files) {
+			if(err) {
+				//form parse error
+				res.redirect('../home');
+			}
 			/*
 			 * NOTE: files.image still returns a valid file object even when
 			 * no file is selected. The file it writes to the files system 
 			 * is 0 bytes. 
 			 */
 
-			// Read file and convert to binary buffer(blob)
-			//fields.image = new Buffer(fs.readFileSync(files.image.path), 'binary');
+			// Read image file and convert to binary buffer(blob)
 			fields.image = fs.readFileSync(files.image.path);
-				
-			// pass form fields(including image blob) and user id to addListing function
-			users.addListing(fields, req.session.user.id, function(err, data){
+
+			// Generate thumbnail
+			thumb({
+				source: files.image.path,
+				destination: __dirname + '/../public/uploads', // temporary dir for thumbnail
+				width: 200, // image thumnail width
+				quiet: true
+			}, function(imgfiles, err, stdout, stderr) {
 				if(err) {
-					/*
-					 * Database error not related to images.
-					 * Continue to delete image but set error
-					 * message/flag here to say that listing was not added
-					 */
+					// Set thumbnail to null on error
+					fields.thumbnail = null;
 				}
-				// delete image file from filesystem
-				fs.unlink(files.image.path, function(err) {
+				else {
+					// Read image file and convert to binary buffer(blob)
+					fields.thumbnail = fs.readFileSync(imgfiles[0].dstPath);
+				}
+
+				// pass form fields(including image/thumbnail blob) and user id to addListing function
+				users.addListing(fields, req.session.user.id, function(err, data){
 					if(err) {
-						// Error deleting file from filesystem
-						res.redirect('../home');
+						/*
+						 * Database error not related to images.
+						 * Continue to delete image but set error
+						 * message/flag here to say that listing was not added
+						 */
 					}
-					else {
-						// Image file deleted
-						// Listing has been added to the database
-						res.redirect('./dashboard');
-					}
+
+					// Delete image and thumbnail asynchronously
+					fs.unlink(files.image.path, function(err) {
+						if(err) console.log(err);
+					});
+					fs.unlink(imgfiles[0].dstPath, function(err) {
+						if(err) console.log(err);
+					});
+
+					// Redirect to dashboard
+					res.redirect('./dashboard');
 				});
 			});
+		});
+	}
+});
+
+router.get('/deleteListing/:id(\\d+)', function(req, res, next) {
+	if(req.session.user.id && (req.session.user.type == constants.SELLER)) {
+		// user is logged in and is a seller
+		
+		// Check that the listing_id was posted by this seller
+		listings.getListingByListingSeller(req.session.user.id, req.params.id, function(err, data) {
+			if(err) {
+				// database error
+				res.redirect('../../home');
+			}
+			else {
+				// check that the listing does exist
+				if(typeof data === 'undefined' || data.length <= 0) {
+					// no listing with specified seller_id and listing_id exists
+					next(); // stop handling request(send to 404 error since listing does not exist)
+				}
+				else {
+					// delete the listing
+					users.deleteListing(req.params.id, function(err, data) {
+						if(err) {
+							// database error
+							res.redirect('../../home');
+						}
+						else {
+							// listing has been successfully deleted
+							res.redirect('../dashboard'); // redirect to dashboard
+						}
+					});
+				}
+			}
 		});
 	}
 });
