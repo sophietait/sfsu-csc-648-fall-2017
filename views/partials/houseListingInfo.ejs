@@ -34,16 +34,16 @@
             </div>
             <div class="row">
                 <div class="col-md-3" id="beds">
-                    <p>Parking: Yes <%= listingData.parking %></p>
+                    <p>Parking: <%= listingData.parking ? "Yes" : "No"; %></p>
                 </div>
                 <div class="col-md-3" id="baths">
-                    <p>Heater: Yes <%= listingData.heater %></p>
+                    <p>Heater: <%= listingData.heater ? "Yes" : "No" %></p>
                 </div>
                 <div class="col-md-3" id="lot-size">
-                    <p>A/C: Yes <%= listingData.ac %></p>
+                    <p>A/C: <%= listingData.ac ? "Yes" : "No" %></p>
                 </div>
                 <div class="col-md-3">
-                    <p>Pool: Yes <%= listingData.pool %></p>
+                    <p>Pool: <%= listingData.pool ? "Yes" : "No" %></p>
                 </div>
             </div>
         </div>

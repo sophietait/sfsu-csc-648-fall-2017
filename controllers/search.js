@@ -19,8 +19,33 @@ router.get('/', function(req, res, next) {
 				data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 			}
 		}
-		// pass JSON data from search controller to search view
-		res.render('search/search', { userData: req.session.user, data: data, pass_search_text: req.query.search_text, pass_price_count: 0, pass_bedroom_count: 0, pass_bathroom_count: 0 });
+		
+		// Get featured listings
+		listings.getFeaturedListings(function(err, featuredListings) {
+			if(err) {
+				featuredListings = []; // Set featuredListings on database error
+			}
+			else {
+				// Convert image blobs to base64 encoded strings
+				for(var i = 0; i < featuredListings.length; i++) {
+					if(featuredListings[i].thumbnail == null) {
+						continue;
+					}
+					var imgstr = new Buffer(listingData[i].thumbnail, 'binary').toString('base64');
+					featuredListings[i].thumbnail = 'data:image/png;base64,' + imgstr;
+				}
+			}
+			// pass JSON data from search controller to search view
+			res.render('search/search', { 
+				userData: req.session.user, 
+				data: data, 
+				featuredListings: featuredListings,
+				pass_search_text: req.query.search_text, 
+				pass_price_count: 0, 
+				pass_bedroom_count: 0, 
+				pass_bathroom_count: 0 
+			});
+		});
 	});
 });
 
