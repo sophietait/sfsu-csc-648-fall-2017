@@ -15,6 +15,5 @@ $(document).ready(function(){
                 alert("Filter did not work: " +response.data);
             }
         });
-		return false; // do not scroll page
     });
 });
