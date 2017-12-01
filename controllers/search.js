@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
 					if(featuredListings[i].thumbnail == null) {
 						continue;
 					}
-					var imgstr = new Buffer(listingData[i].thumbnail, 'binary').toString('base64');
+					var imgstr = new Buffer(featuredListings[i].thumbnail, 'binary').toString('base64');
 					featuredListings[i].thumbnail = 'data:image/png;base64,' + imgstr;
 				}
 			}
