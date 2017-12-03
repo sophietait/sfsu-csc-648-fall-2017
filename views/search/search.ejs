@@ -58,7 +58,7 @@
 			<p>Your search returned <%= data.length %> results</p>
 
 			<!-- If zero listings were found, display featured listings -->
-			<% if(data.length === 0) { %>
+			<% if(data.length !== 0) { %>
 
 				<div class="row">
 					<div class="col-sm-12 searchResults">
