@@ -36,8 +36,9 @@ router.get('/', function(req, res, next) {
 				}
 			}
 			// pass JSON data from search controller to search view
-			res.render('search/search', { 
-				userData: req.session.user, 
+			res.render('search/search', {
+                title: 'Dream Home',
+                userData: req.session.user,
 				data: data, 
 				featuredListings: featuredListings,
 				pass_search_text: req.query.search_text, 
@@ -53,7 +54,7 @@ router.get('/sortByPriceBedBath', function(req,res,next){
 	listings.sortByPriceBedBath(req.query.search_text, req.query.sortByPrice, req.query.bedroomValue, req.query.bathroomValue, function(err,data){
 		if(err){
 			listings.getDefaultListings(function(data){
-				res.render('search/search', { userData: req.session.user, data: data });
+				res.render('search/search', { title: 'Dream Home', userData: req.session.user, data: data });
 			});
 		}
 		else{
@@ -64,7 +65,7 @@ router.get('/sortByPriceBedBath', function(req,res,next){
 				var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
 				data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 			}
-			res.render('partials/searchResults.ejs', {layout: true, data: data});
+			res.render('partials/searchResults.ejs', {title: 'Dream Home', layout: true, data: data});
 		}
 	})
 });

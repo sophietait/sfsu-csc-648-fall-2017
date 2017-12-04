@@ -1,23 +1,24 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-<head>	
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="../stylesheets/main.css" type = "text/css">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="../stylesheets/main.css" type="text/css">
+    </head>
 
-<body style = "background-color:lavender;">
+    <body style="background-color:lavender;">
+        <% include ../partials/disclaimer.ejs %>
+        <% include ../partials/navbar.ejs %>
+        <h1 style="text-align:center">Sophie Tait</h1>
+        <h2 style="text-align:center">CSC 648-848 Fall 2017 M0 Section 02 Team 05 </h2>
+        <p style="text-align:center">Undergraduate student at SFSU</p>
 
 
- <h1 style="text-align:center">Sophie Tait</h1>
- <h2 style="text-align:center">CSC 648-848 Fall 2017 M0 Section 02 Team 05 </h2>
- <p style="text-align:center">Undergraduate student at SFSU</p>
-
-
- <div class="col-sm-4">
-    <center>
-        <img src="../images/sophie.jpg" class"=img-responsive" align="middle" alt="Image">
-    </center>
-</div>
-
-</body>
+        <div class="col-sm-4">
+            <center>
+                <img src="../images/sophie.jpg" class"=img-responsive" align="middle" alt="Image">
+            </center>
+        </div>
+        <% include ../partials/footer.ejs %>
+    </body>
 </html>
