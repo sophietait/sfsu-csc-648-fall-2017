@@ -49,7 +49,7 @@ router.get('/:id(\\d+)', function(req, res, next) {
 				}
 				res.render('listing/listing', {
 					title: 'Dream Home',
-                    userData: req.session.user,
+                                        userData: req.session.user,
 					listingData: listingData[0], 
 					addressString: addressString,
 					pass_search_text: req.query.search_text || ""
