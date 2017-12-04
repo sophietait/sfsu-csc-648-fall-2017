@@ -398,3 +398,49 @@ div.icon-bar{
     margin-bottom:0;
 }
 
+.searchResults{
+     padding-top:20px;
+ }
+
+ 
+ 
+ .thumbnail{
+     background-color: rgba(108, 174, 224,.5);
+     height: 100%;
+     overflow: hidden;
+     min-height:300px;
+     
+ }
+ .thumbnail a.btn.btn-default{
+    position:absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ }
+.thumbnail a img{
+    height:160px;
+    width:100%;
+}
+ 
+ .thumbnail ul{
+     list-style-type: none;
+     padding-left:0;
+ }
+    
+    
+ .ad{
+     font-size: 12px;
+ }
+     
+ .details{
+   font-size: 14px;
+ }
+ 
+ .pr{
+     font-size: 30px;
+ } 
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
