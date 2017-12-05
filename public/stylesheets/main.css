@@ -5,7 +5,8 @@ body {
 
 /* For Google Maps */
 #map {
-	width: 100%;
+    margin: 0 auto;
+	max-width: 600px;
 	height: 400px;
 }
 
@@ -30,7 +31,7 @@ body {
 
 #welcome {
     margin-top:-22px;
-    padding-bottom:160px;
+    padding-bottom:20px;
     background-image:url("../images/san_francisco.jpg");
     background-size:cover;
 }
@@ -53,7 +54,7 @@ body {
     margin-top:-22px;
     padding-bottom:160px;
     background-image:url("../images/about.jpg");
-    background-position:50% 0%;
+    background-position:50% 40%;
     background-size:cover;
 }
 
@@ -86,9 +87,13 @@ body {
     
 }
 
+#back-button {
+    margin-left: 60px;
+    margin-bottom: -73px;
+}
 
 .search-form {
-    margin:40px 5px;
+    margin:40px 200px;
     font:normal 12px sans-serif;
     box-shadow:1px 2px 4px 0 rgba(0, 0, 0, 0.08);
 }
@@ -254,9 +259,9 @@ div.icon-bar{
 
 .contact-clean h2 {
     margin-top:5px;
+    margin-bottom:25px;
     font-weight:bold;
     font-size:28px;
-    margin-bottom:25px;
     color:inherit;
 }
 
@@ -287,7 +292,7 @@ div.icon-bar{
     min-height:100px;
     max-height:260px;
     padding-top:10px;
-    resize:vertical;
+    resize:none;
 }
 
 .contact-clean form .form-control-feedback {
@@ -345,7 +350,8 @@ div.icon-bar{
 }
 
 .house-property {
-    margin:25px 0;
+    margin:25px auto;
+    max-width: 900px;
     font-size:25px;
 }
 
@@ -398,3 +404,49 @@ div.icon-bar{
     margin-bottom:0;
 }
 
+.searchResults{
+     padding-top:20px;
+ }
+
+ 
+ 
+ .search-thumbnail{
+     background-color: rgba(108, 174, 224,.5);
+     height: 100%;
+     overflow: hidden;
+     min-height:300px;
+     
+ }
+ .search-thumbnail a.btn.btn-default{
+    position:absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ }
+.search-thumbnail a img{
+    height:160px;
+    width:100%;
+}
+ 
+ .search-thumbnail ul{
+     list-style-type: none;
+     padding-left:0;
+ }
+    
+    
+ .ad{
+     font-size: 12px;
+ }
+     
+ .details{
+   font-size: 14px;
+ }
+ 
+ .pr{
+     font-size: 30px;
+ } 
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}

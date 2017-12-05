@@ -21,7 +21,7 @@ var listings = require('../models/Listings');
  * (User has clicked on login link)
  */
 router.get('/login', function(req, res, next) {
-	res.render('user/login', { userData: req.session.user });
+	res.render('user/login', { title: 'Dream Home', userData: req.session.user });
 });
 
 /*
@@ -62,7 +62,7 @@ router.get('/logout', function(req, res, next) {
  * (User has clicked on the signup link)
  */
 router.get('/signup', function(req, res, next) {
-	res.render('user/signup', { userData: req.session.user });
+	res.render('user/signup', { title: 'Dream Home', userData: req.session.user });
 });
 
 /*
@@ -105,7 +105,7 @@ router.get('/dashboard', function(req, res, next) {
 					var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
 					data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 				}
-				res.render('user/dashboard', { userData: req.session.user, data: data });
+				res.render('user/dashboard', { title: 'Dream Home', userData: req.session.user, data: data });
 			}
 		});
 	}
@@ -117,7 +117,7 @@ router.get('/dashboard', function(req, res, next) {
 
 router.get('/addListingPage', function(req, res, next){
 	if(req.session.user.id) {
-		res.render('user/addListingPage', { userData: req.session.user });
+		res.render('user/addListingPage', { title: 'Dream Home', userData: req.session.user });
 	}
 	else {
 		// user is not logged in
