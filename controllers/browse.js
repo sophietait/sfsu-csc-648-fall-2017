@@ -4,7 +4,7 @@ var router = express.Router();
 var listings = require('../models/Listings');
 
 router.get('/', function(req, res, next) {
-  res.render('browse/browse');
+  res.render('browse/browse' , { title: 'Dream Home' });
 });
 
 router.get('/city', function(req, res, next){
@@ -17,7 +17,7 @@ router.get('/city', function(req, res, next){
 			for(var i =0 ; i < data.length; i++){
 				data[i] = data[i].city;
 			}
-			    res.render('browse/result' , { data: data, userData: req.session.user });
+			    res.render('browse/result' , { title: 'Dream Home', data: data, userData: req.session.user });
 		}
 		
 	});
@@ -33,7 +33,7 @@ router.get('/state', function(req, res, next){
 			for(var i =0 ; i < data.length; i++){
 				data[i] = data[i].state;
 			}
-			res.render('browse/result' , {data: data, userData: req.session.user });
+			res.render('browse/result' , { title: 'Dream Home', data: data, userData: req.session.user });
 		}
 	});
 });
@@ -48,7 +48,7 @@ router.get('/zipcode', function(req, res, next){
 			for(var i = 0; i < data.length; i++){
 				data[i] = data[i].zipcode;
 			}
-			res.render('browse/result' , {data: data, userData: req.session.user });
+			res.render('browse/result' , { title: 'Dream Home', data: data, userData: req.session.user });
 		}
 	});
 });
