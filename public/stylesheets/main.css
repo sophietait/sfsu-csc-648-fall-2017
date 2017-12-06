@@ -450,3 +450,35 @@ div.icon-bar{
   display: flex;
   flex-wrap: wrap;
 }
+
+#sort-by-price{
+    float:right;
+}
+
+#sort-by-bathroom{
+    float:left;
+}
+
+#priceDropdown{
+    right:0;
+    left:auto;
+}
+
+#bedroomDropdown{
+left:30%;
+}
+
+#bathroomDropdown{
+left:0;
+right:auto;
+}
+
+#labelPrice{
+    text-align:right;
+    margin-right:15px;
+}
+
+#labelBaths{
+    text-align:left;
+    margin-left:35px;
+}
