@@ -55,7 +55,17 @@ exports.addNewUser = function(q, cb) {
 exports.addListing = function(listingParams, userID, cb) {
 	var sql = "INSERT INTO listing(address, state, city, zipcode, price, posted_on, bedroom_count, bathroom_count, pool, ac, heater, floor_size, parking, seller_id, image, thumbnail) ";
 		sql += "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	db.runqueryEscaped(sql, [listingParams.address, listingParams.state, listingParams.city, listingParams.zipcode, listingParams.price, (new Date()).toISOString().substring(0, 10),listingParams.bedroom, listingParams.bathroom, listingParams.pool, listingParams.ac, listingParams.heater, listingParams.floor, listingParams.parking, userID, listingParams.image, listingParams.thumbnail], cb);
+	db.runqueryEscaped(sql, [listingParams.address, listingParams.state, listingParams.city, listingParams.zipcode, listingParams.price, (new Date()).toISOString().substring(0, 10), listingParams.bedroom, listingParams.bathroom, listingParams.pool, listingParams.ac, listingParams.heater, listingParams.floor, listingParams.parking, userID, listingParams.image, listingParams.thumbnail], cb);
+}
+
+exports.editListing = function(listingParams, cb) {
+	var sql = "UPDATE listing SET ";
+		sql += "address = ?, state = ?, city = ?, zipcode = ?, ";
+		sql += "price = ?, posted_on = ?, bedroom_count = ?, bathroom_count = ?, ";
+		sql += "pool = ?, ac = ?, heater = ?, floor_size = ?, ";
+		sql += "parking = ? ";
+		sql += "WHERE listing_id = ?";
+	db.runqueryEscaped(sql, [listingParams.address, listingParams.state, listingParams.city, listingParams.zipcode, listingParams.price, (new Date()).toISOString().substring(0, 10), listingParams.bedroom, listingParams.bathroom, listingParams.pool, listingParams.ac, listingParams.heater, listingParams.floor, listingParams.parking, listingParams.listing_id], cb);
 }
 
 exports.deleteListing = function(listingId, cb) {
