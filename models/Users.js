@@ -81,7 +81,8 @@ exports.deleteListing = function(listingId, cb) {
  * Uses image thumbnail
  */
 exports.getSellerListings = function(user, cb){
-	var sql = "SELECT thumbnail, listing_id, address FROM listing ";
+	var sql = "SELECT thumbnail, listing_id, address, city, state, zipcode, price, posted_on ";
+		sql += "FROM listing ";
 		sql += "WHERE listing.seller_id = ?";
 		db.runqueryEscaped(sql,	[user.id], cb);
 }
