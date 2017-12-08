@@ -1,4 +1,4 @@
-<button class="btn btn-default" id="add-listing" type="submit" formaction="addListingPage" formmethod="get">Add Listing</button>
+<a href="addListingPage"><button class="btn btn-default" id="add-listing">Add Listing</button></a>
 <div class="container">
     <div class="row seller-listing">
         <% if(data != null){ %>
@@ -21,7 +21,7 @@
                             </div>
                         </a>
                         <div class="card-footer"><small>Date Listed: <%= data[i].posted_on %></small>
-                            <button class="btn btn-secondary btn-sm" href="editListing/<%= data[i].listing_id %>">Edit</button>
+                            <a href="editListing/<%= data[i].listing_id %>"><button class="btn btn-secondary btn-sm">Edit</button></a>
                         </div>
                     </div>
                 </div>
