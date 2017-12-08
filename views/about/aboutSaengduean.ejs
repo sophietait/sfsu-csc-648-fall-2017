@@ -5,21 +5,29 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" type="text/css">
 		<link rel="stylesheet" href="../stylesheets/main.css" type = "text/css">
-
+		<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+		<script src = "../bootstrap/js/jquery.min.js"></script>
+		<script src = "../bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body style = "background-color:powderblue;">
-	 <div class="container">
-      <div class="row">
-       <div class="text-center">
-         <h1>Saengduean Caleraz</h1>
-     	<div class="col-sm-4">
-     </div>
-	   <div class="col-sm-4">
-     	<img src="../images/Saengduean_picture.jpg" class="img-responsive" alt="Image">
-     	  <p>I am a student at SFSU. This page will be use as a part of Software Engineering class.</p>
-        <div class="col-sm-4">
-         </div>
-   
+	<% include ../partials/disclaimer.ejs %>
+	<% include ../partials/navbar.ejs %>
+	<div class="container">
+		<div class="row">
+			<div class="text-center">
+				<h1>Saengduean Caleraz</h1>
+				<div class="col-sm-4">
+				</div>
+				<div class="col-sm-4">
+					<img src="../images/Saengduean_picture.jpg" class="img-responsive" alt="Image">
+					<p>I am a student at SFSU. This page will be use as a part of Software Engineering class.</p>
+					<div class="col-sm-4">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <% include ../partials/footer.ejs %>
 </body>
 </html>

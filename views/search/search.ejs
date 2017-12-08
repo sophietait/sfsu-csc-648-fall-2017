@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title><%= title %></title>
 		<link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css" type = "text/css">
         <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -19,34 +20,34 @@
             <% include ../partials/searchbar.ejs %>
 			
 			<div class="row">
-				<div class="dropdown col-sm-4">
+				<div class="dropdown col-sm-4 col-xs-4">
+                    <h4 id = "labelPrice">Price</h4>
 				    <button id = "sort-by-price" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" value="<%=pass_price_count%>">Price
 				    	<span class="caret"></span>
 				    </button>
-				    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li class = "price" value = "0" role="presentation"><a role="menuitem" tabindex="-1" href="#!"><-- Filter by Price --></a></li>
+				    <ul class="dropdown-menu" id = "priceDropdown" role="menu" aria-labelledby="menu1">
 					    <li class = "price" value = "1" role="presentation"><a role="menuitem" tabindex="-1" href="#!">Low-High</a></li>
 					    <li class = "price" value = "2" role="presentation"><a role="menuitem" tabindex="-1" href="#!">High-Low</a></li>
 				    </ul>
 				</div>
-				<div class="dropdown col-sm-4">
+				<div class="dropdown col-sm-4 col-xs-4">
+                    <h4 id = "labelBeds">Beds</h4>
 					<button id = "sort-by-bedroom" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" value="<%=pass_bedroom_count%>">No of Beds
 						<span class="caret"></span>
 					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li class = "bedroom" role="presentation" value="0"><a role="menuitem" tabindex="-1" href="#!"><-- Filter by Bedroom Count--></a></li>
+					<ul class="dropdown-menu" id = "bedroomDropdown" role="menu" aria-labelledby="menu1">
 						<li class = "bedroom" role="presentation" value="1"><a role="menuitem" tabindex="-1" href="#!">1+</a></li>
 						<li class = "bedroom" role="presentation" value="2"><a role="menuitem" tabindex="-1" href="#!">2+</a></li>
 						<li class = "bedroom" role="presentation" value="3"><a role="menuitem" tabindex="-1" href="#!">3+</a></li>
 						<li class = "bedroom" role="presentation" value="4"><a role="menuitem" tabindex="-1" href="#!">4+</a></li>
 					</ul>
 				</div>
-				<div class="dropdown col-sm-4">
+				<div class="dropdown col-sm-4 col-xs-4">
+                    <h4 id ="labelBaths">Baths</h4>
 					<button id = "sort-by-bathroom" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" value="<%=pass_bathroom_count%>">No of Baths
 						<span class="caret"></span>
 					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li class = "bathroom" role="presentation" value="0"><a role="menuitem" tabindex="-1" href="#!"><-- Filter by Bathroom Count--></a></li>
+					<ul class="dropdown-menu" id = "bathroomDropdown" role="menu" aria-labelledby="menu1">
 						<li class = "bathroom" role="presentation" value="1"><a role="menuitem" tabindex="-1" href="#!">1+</a></li>
 						<li class = "bathroom" role="presentation" value="2"><a role="menuitem" tabindex="-1" href="#!">2+</a></li>
 						<li class = "bathroom" role="presentation" value="3"><a role="menuitem" tabindex="-1" href="#!">3+</a></li>
@@ -61,11 +62,12 @@
 			<% if(data.length !== 0) { %>
 
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-12 searchResults">
 						<!-- Display table of search results using ejs  -->
-						<div class="table-responsive" id="searchResultsTable">
+						<div id="searchResultsTable">
 							<% include ../partials/searchResults.ejs %>
 						</div>
+					
 					</div>
 				</div>
 

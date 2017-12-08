@@ -1,6 +1,6 @@
 <div class="listing-element">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row house-property">
             <div class="col-md-8">
                 <!-- House Images -->
                 <% include ./listingImageCarousel.ejs %>
@@ -29,7 +29,7 @@
                     <p>Sqft: <%= listingData.floor_size %></p>
                 </div>
                 <div class="col-md-3">
-                    <p>Price/Sqft: </p>
+                    <p>Price/Sqft: <%= (listingData.price / listingData.floor_size).toFixed(2) %></p>
                 </div>
             </div>
             <div class="row">

@@ -16,8 +16,8 @@ router.get('/:id(\\d+)', function(req, res, next) {
 			listings.getDefaultListings(function(listingData) {
 				var addressString = '';
 				if(typeof listingData !== 'undefined' && listingData.length > 0) {
-					addressString = listingData[0].address + ', ' + listingData[0].city + ' ' + 
-									listingData[0].zipcode + ' ' + listingData[0].state;
+					addressString = listingData[0].address + ', ' + listingData[0].city + ', ' +
+                        			listingData[0].state + ' ' + listingData[0].zipcode;
 				}
 				// Convert image blob to base64 encoded string
 				if(listingData[0].image){
@@ -38,8 +38,8 @@ router.get('/:id(\\d+)', function(req, res, next) {
 			// Create address string used for google maps
 			var addressString = '';
 			if(typeof listingData !== 'undefined' && listingData.length > 0) {
-				addressString = listingData[0].address + ', ' + listingData[0].city + ' ' + 
-								listingData[0].zipcode + ' ' + listingData[0].state;
+				addressString = listingData[0].address + ', ' + listingData[0].city + ', ' +
+								listingData[0].state + ' ' + listingData[0].zipcode;
 				// Render listing page for the appropriate listing_id, passing the listing object and address string
 
 				// Convert image blob to base64 encoded string
@@ -47,8 +47,9 @@ router.get('/:id(\\d+)', function(req, res, next) {
 					var imgstr = new Buffer(listingData[0].image, 'binary').toString('base64');
 					listingData[0].image = 'data:image/png;base64,' + imgstr;
 				}
-				res.render('listing/listing', { 
-					userData: req.session.user, 
+				res.render('listing/listing', {
+					title: 'Dream Home',
+					userData: req.session.user,
 					listingData: listingData[0], 
 					addressString: addressString,
 					pass_search_text: req.query.search_text || ""

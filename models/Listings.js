@@ -38,7 +38,7 @@ exports.getListingsBySearch = function(search_text, cb) {
  * Gets full image from database
  */
 exports.getListingsById = function(id, cb) {
-	var sql = "SELECT listing.image, listing.address, listing.city, listing.state, listing.zipcode, listing.price, listing.posted_on, listing.bedroom_count, listing.bathroom_count, listing.pool, listing.ac, listing.heater, listing.floor_size, listing.parking, listing.seller_id, user.first_name, user.last_name ";
+	var sql = "SELECT listing.listing_id, listing.image, listing.address, listing.city, listing.state, listing.zipcode, listing.price, listing.posted_on, listing.bedroom_count, listing.bathroom_count, listing.pool, listing.ac, listing.heater, listing.floor_size, listing.parking, listing.seller_id, user.first_name, user.last_name ";
 		sql += "FROM listing, user ";
 		sql += "WHERE ";
 		sql += "listing.seller_id = user.user_id AND "

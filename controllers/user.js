@@ -21,7 +21,7 @@ var listings = require('../models/Listings');
  * (User has clicked on login link)
  */
 router.get('/login', function(req, res, next) {
-	res.render('user/login', { userData: req.session.user });
+	res.render('user/login', { title: 'Dream Home', userData: req.session.user });
 });
 
 /*
@@ -62,7 +62,7 @@ router.get('/logout', function(req, res, next) {
  * (User has clicked on the signup link)
  */
 router.get('/signup', function(req, res, next) {
-	res.render('user/signup', { userData: req.session.user });
+	res.render('user/signup', { title: 'Dream Home', userData: req.session.user });
 });
 
 /*
@@ -105,7 +105,7 @@ router.get('/dashboard', function(req, res, next) {
 					var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
 					data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 				}
-				res.render('user/dashboard', { userData: req.session.user, data: data });
+				res.render('user/dashboard', { title: 'Dream Home', userData: req.session.user, data: data });
 			}
 		});
 	}
@@ -117,7 +117,7 @@ router.get('/dashboard', function(req, res, next) {
 
 router.get('/addListingPage', function(req, res, next){
 	if(req.session.user.id) {
-		res.render('user/addListingPage', { userData: req.session.user });
+		res.render('user/addListingPage', { title: 'Dream Home', userData: req.session.user });
 	}
 	else {
 		// user is not logged in
@@ -126,7 +126,7 @@ router.get('/addListingPage', function(req, res, next){
 });
 
 router.post('/addListing', function(req, res, next){
-	if(req.session.user.id){
+	if(req.session.user.id) {
 
 		var form = new formidable.IncomingForm(); // Get form data from addListing page
 		form.uploadDir = __dirname + '/../public/uploads'; // temporary upload dir for images
@@ -187,6 +187,10 @@ router.post('/addListing', function(req, res, next){
 			});
 		});
 	}
+	else {
+		// user is not logged in
+		res.redirect('../home');
+	}
 });
 
 router.get('/deleteListing/:id(\\d+)', function(req, res, next) {
@@ -220,6 +224,95 @@ router.get('/deleteListing/:id(\\d+)', function(req, res, next) {
 				}
 			}
 		});
+	}
+	else {
+		// user is not logged in or is not a seller
+		res.redirect('../../home');
+	}
+});
+
+/*
+ * Handler for sellers to edit listings that they have posted.
+ */
+router.get('/editListing/:id(\\d+)', function(req, res, next) {
+	if(req.session.user.id && (req.session.user.type == constants.SELLER)) {
+		// user is logged in and is a seller
+		
+		// Check that thte listing_id was posted by this seller
+		listings.getListingByListingSeller(req.session.user.id, req.params.id, function(err, data) {
+			if(err) {
+				// database error
+				res.redirect('../../home');
+			}
+			else {
+				// Get full listing details from database
+				listings.getListingsById(req.params.id, function(err, listingData) {
+					if(err) {
+						// database error
+						res.redirect('../../home')
+					}
+					else {
+						// Check that listing does exist
+						if(typeof data !== 'undefined' || listingData.length > 0) {
+							// Allow user to edit listing			 
+							res.render('user/editListingPage', { 
+								title: 'Dream Home', 
+								userData: req.session.user,
+								listingData: listingData[0]
+							});
+						}
+						else {
+							next(); // stop handling request
+						}
+					}
+				});
+			}
+		});
+	}
+	else {
+		// user is not logged in or is not a seller
+		res.redirect('../../home');
+	}
+});
+
+/*
+ * Handler for post requests to the editListing page
+ * Currently does not support updating images
+ */
+router.post('/editListing/:id(\\d+)', function(req, res, next){
+	if(req.session.user.id) {
+		// user is logged in
+
+		var form = new formidable.IncomingForm(); // Get form data from editListing page
+
+		// Parse editListing form with formidable(since form contains images)
+		form.parse(req, function(err, fields, files) {
+			if(err) {
+				//form parse error
+				res.redirect('../../home');
+			}
+			else {
+				// add listing id to fields
+				fields.listing_id = req.params.id;
+
+				// pass form fields id to editListing function
+				users.editListing(fields, function(err, data) {
+					if(err) {
+						// database error
+						res.redirect('../../home');
+					}
+					else {
+						// Listing successfully updated
+						// Redirect to dashboard
+						res.redirect('../dashboard');
+					}	
+				});
+			}
+		});
+	}
+	else {
+		// user is not logged in
+		res.redirect('../home'); 
 	}
 });
 
