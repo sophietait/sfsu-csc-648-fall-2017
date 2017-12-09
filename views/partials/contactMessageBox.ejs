@@ -1,11 +1,12 @@
 <div class="col-md-4 contact-clean">
-    <form action="" method="post">
+    <form action="/contactedListing/contactSeller" method="post">
         <h2 class="text-center">Contact <br> <%= listingData.first_name %> <%= listingData.last_name %></h2>
         <div class="form-group">
-            <textarea class="form-control" name="message" placeholder="Hi, I am interested in this house. I would like to go through it with you in further details. Please get back to me as soon as possible!">Hi, I am interested in this house. I would like to go through it with you in further details. Please get back to me as soon as possible!</textarea>
+            <textarea class="form-control" rows="14" name="message" placeholder="Hi, I am interested in this house. I would like to go through it with you in further details. Please get back to me as soon as possible!">Hi, I am interested in this house. I would like to go through it with you in further details. Please get back to me as soon as possible!</textarea>
+            <input type="hidden" name="listingID" value=<%= listingData.listing_id %>>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary" type="submit">send </button>
+            <button class="btn btn-primary" id="message" type="submit">send </button>
         </div>
     </form>
 </div>

@@ -87,6 +87,13 @@ exports.getSellerListings = function(user, cb){
 		db.runqueryEscaped(sql,	[user.id], cb);
 }
 
+exports.getMessages = function(userID, cb){
+	var sql = "SELECT user.first_name, user.last_name, contacted_listing.message, contacted_listing.sent_date FROM user, contacted_listing ";
+		sql += "WHERE user.user_id IN (select seller_id FROM listing WHERE listing.listing_id IN ";
+		sql += "(select listing_id from contacted_listing where buyer_id = ?)) ";
+		db.runqueryEscaped(sql, [userID], cb);
+}
+
 /*
  * getContacts
  * Get the contacts involving the user with the specified id

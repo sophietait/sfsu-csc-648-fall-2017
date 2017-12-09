@@ -1,0 +1,15 @@
+<div>
+<% if(messages != null){  %>
+    <% for(var i=0; i<messages.length;i++) { %>
+        <div class="card-block">
+            <%= messages[i].first_name %> <%= messages[i].last_name %>
+        </div>
+        <div class="card-block">
+            <%= messages[i].message %>
+        </div>
+        <div class="card-block">
+            <%= messages[i].sent_date %>
+        </div>
+    <% } %>
+<% } %>
+</div>
