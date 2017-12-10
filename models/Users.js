@@ -87,11 +87,27 @@ exports.getSellerListings = function(user, cb){
 		db.runqueryEscaped(sql,	[user.id], cb);
 }
 
-exports.getMessages = function(userID, cb){
-	var sql = "SELECT user.first_name, user.last_name, contacted_listing.message, contacted_listing.sent_date FROM user, contacted_listing ";
-		sql += "WHERE user.user_id IN (select seller_id FROM listing WHERE listing.listing_id IN ";
-		sql += "(select listing_id from contacted_listing where buyer_id = ?)) ";
-		db.runqueryEscaped(sql, [userID], cb);
+exports.getMessages = function(user, cb){
+	if(user.type){
+		var sql = "SELECT DISTINCT user.first_name, user.last_name, contacted_listing.listing_id, contacted_listing.message, contacted_listing.sent_date ";
+			sql += "FROM user INNER JOIN contacted_listing ON user.user_id = contacted_listing.buyer_id ";
+			sql += "WHERE user.user_type = 0 AND ";
+			sql += "contacted_listing.listing_id IN ";
+			sql += "(SELECT listing_id from listing WHERE listing.seller_id = ?)";
+			db.runqueryEscaped(sql, [user.id], cb);
+	}
+	else{
+		var sql = "SELECT t1.message, t1.sent_date, t1.listing_id, t2.first_name, t2.last_name ";
+			sql += "from (SELECT user.user_id as buyer_id, contacted_listing.message, contacted_listing.sent_date, contacted_listing.listing_id ";
+			sql += "FROM user inner join contacted_listing ";
+			sql += "on user.user_id = contacted_listing.buyer_id) as t1 ";
+			sql += "inner join ";
+			sql += "(SELECT listing.listing_id, user.first_name, user.last_name from ";
+			sql += "user inner join listing on user.user_id = listing.seller_id) as t2 ";
+			sql += "on t1.listing_id = t2.listing_id ";
+			sql += "where t1.buyer_id = ?";
+		db.runqueryEscaped(sql, [user.id], cb);
+	}	
 }
 
 /*

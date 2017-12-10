@@ -106,7 +106,7 @@ router.get('/dashboard', function(req, res, next) {
 					var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
 					data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 				}
-				users.getMessages(req.session.user.id, function(err, messages){
+				users.getMessages(req.session.user, function(err, messages){
 					res.render('user/dashboard', { title: 'Dream Home', userData: req.session.user, data: data, messages: messages });
 				});	
 			}
