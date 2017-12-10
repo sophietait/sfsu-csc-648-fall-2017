@@ -6,17 +6,20 @@ var contactedListings = require('../models/ContactedListings');
 
 router.post('/contactSeller', function(req, res, next) {
 	if(req.session.user.id) {
+		// user is logged in
         contactedListings.sendMessage(req.session.user.id, req.body.message, req.body.listingID, function(err, data){
-			if(err){
-				res.redirect('../home');
+			if(err) {
+				// database error
+
+				// Could be caused by user sending a message to the same listing twice.
 			}
-			users.getMessages(req.session.user.id, function(err, messages){
-				res.render('user/dashboard', { title: 'Dream Home', userData: req.session.user, data: data, messages: messages });
-			});	
+			res.redirect('../user/dashboard');
 		});
 	}
 	else {
-		res.redirect('../home');
+		// user is not logged in
+		// redirect to the signup page
+		res.redirect('../user/signup');
 	}
 });
 
