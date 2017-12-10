@@ -15,6 +15,7 @@ const constants = require('../helpers/constants');
 
 var users = require('../models/Users');
 var listings = require('../models/Listings');
+var contacted_listings = require('../models/ContactedListings');
 
 /*
  * Render login page where existing user may login
@@ -105,7 +106,14 @@ router.get('/dashboard', function(req, res, next) {
 					var imgstr = new Buffer(data[i].thumbnail, 'binary').toString('base64');
 					data[i].thumbnail = 'data:image/png;base64,' + imgstr;
 				}
-				res.render('user/dashboard', { title: 'Dream Home', userData: req.session.user, data: data });
+				users.getMessages(req.session.user, function(err, messages){
+					res.render('user/dashboard', { 
+						title: 'Dream Home', 
+						userData: req.session.user, 
+						data: data, 
+						messages: messages || []
+					});
+				});	
 			}
 		});
 	}

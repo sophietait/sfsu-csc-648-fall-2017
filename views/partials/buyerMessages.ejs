@@ -1,0 +1,22 @@
+<div>
+<% if(messages != null){  %>
+    <% for(var i=0; i<messages.length;i++) { %>
+        <div class="card-block">
+            Listing ID:
+            <%= messages[i].listing_id %>
+        </div>
+        <div class="card-block">
+            Name:
+            <%= messages[i].first_name %> <%= messages[i].last_name %>
+        </div>
+        <div class="card-block">
+            Message:
+            <%= messages[i].message %>
+        </div>
+        <div class="card-block">
+            Sent Date:
+            <%= messages[i].sent_date %>
+        </div>
+    <% } %>
+<% } %>
+</div>
