@@ -17,8 +17,10 @@
             
               <ul class="nav navbar-nav navbar-right">
                 <li><a href = "/fa17g05/about">About</a></li>
+                  <%if(userData.type === 0){ %>
                 <li><a href="/fa17g05/user/signup">Seller</a></li>
-                <% if(userData.type === -1){ %>
+                  <% } %>
+                  <% if(userData.type === -1){ %>
                 <li class="dropdown" id = "login">
                   <a href="#" data-toggle="dropdown" class="dropdown-toggle">Login</a>
                     <div class="dropdown-menu" id="formLogin">
@@ -44,7 +46,9 @@
                   <% } else{ %>
                     <li><a href="/fa17g05/user/logout" id = "logout">Log Out</a></li>
                   <% } %>
+                  <% if(userData.type === 1){ %>
 				<li><a href="/fa17g05/user/dashboard">Dashboard</a></li>
+                  <% } %>
 
               </ul>
 
