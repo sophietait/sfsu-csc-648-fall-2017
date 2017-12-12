@@ -8,6 +8,8 @@ router.use('/search', require('./search'));
 router.use('/listing', require('./listing'));
 router.use('/browse', require('./browse'));
 router.use('/user', require('./user'));
+router.use('/contactedListing', require('./contactedListing'));
+
 
 router.get('/', function(req, res, next) {
 	res.redirect('./home');
