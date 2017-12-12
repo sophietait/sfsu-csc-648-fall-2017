@@ -227,14 +227,14 @@ div.icon-bar {
 }
 
 #logout {
-    font-size: 12px;
+    color: #272635;
+    font-size: 18px;
 }
 
-#logout:hover {
-    font-size: 12px;
-    color: red;
+#logout:hover{
+    color: #0076A8;
+    cursor:pointer;
 }
-
 .listing-element {
     border-radius: 4px;
     margin: 10px 15px;
@@ -461,17 +461,23 @@ div.icon-bar {
 }
 
 #priceDropdown {
-    right: 0;
+    right: -10%;
     left: auto;
+    text-align: center;
+    padding:5px;
 }
 
 #bedroomDropdown {
     left: 30%;
+    text-align: center;
+    padding:5px;
 }
 
 #bathroomDropdown {
     left: 0;
     right: auto;
+    text-align: center;
+    padding:5px;
 }
 
 #labelPrice {
