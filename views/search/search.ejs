@@ -15,7 +15,10 @@
 	<body>
         <% include ../partials/disclaimer.ejs %>
 		<% include ../partials/navbar.ejs %>
-		<a href= "../home">Back</a>
+		<div id="back-button">
+			<!-- Go back (resubmit search) -->
+			<a onclick="javascript:history.back()" class="btn btn-primary">Back </a>
+		</div>
 		<div class="container text-center">
 
             <% include ../partials/searchbar.ejs %>
