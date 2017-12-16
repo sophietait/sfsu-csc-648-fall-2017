@@ -90,6 +90,7 @@ body {
 #back-button {
     margin-left: 60px;
     margin-bottom: -73px;
+    position: absolute;
 }
 
 .search-form {
@@ -654,4 +655,8 @@ div.icon-bar {
     color:rgba(0, 0, 0, .4);
     border-top:1px solid rgba(0, 0, 0, .05) !important;
     background:#fff;
+}
+
+.page-heading{
+    text-align: center;
 }
