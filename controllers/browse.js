@@ -18,7 +18,7 @@ router.get('/city', function(req, res, next){
 				data[i] = data[i].city;
 			}
 
-			    res.render('browse/result' , { title: 'Dream Home', data: data.sort(), userData: req.session.user });
+			    res.render('browse/result' , { title: 'Dream Home', data: data.sort(), userData: req.session.user, browseParam: "City" });
 
 		}
 		
@@ -36,7 +36,7 @@ router.get('/state', function(req, res, next){
 				data[i] = data[i].state;
 			}
 
-			res.render('browse/result' , { title: 'Dream Home', data: data.sort(), userData: req.session.user });
+			res.render('browse/result' , { title: 'Dream Home', data: data.sort(), userData: req.session.user, browseParam: "State" });
 
 		}
 	});
@@ -53,7 +53,7 @@ router.get('/zipcode', function(req, res, next){
 				data[i] = data[i].zipcode;
 			}
 
-			res.render('browse/result' , { title: 'Dream Home', data: data.sort(), userData: req.session.user });
+			res.render('browse/result' , { title: 'Dream Home', data: data.sort(), userData: req.session.user, browseParam: "Zipcode" });
 
 		}
 	});
