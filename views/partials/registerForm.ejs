@@ -1,0 +1,74 @@
+<div class="row register-form">
+    <div class="col-md-8 col-md-offset-2">
+        <form class="form-horizontal custom-form" method="post">
+            <h1>Register Form</h1>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label for="name-input-field" class="control-label">First Name </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="firstName" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label for="name-input-field" class="control-label">Last Name </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" name="lastName" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label for="email-input-field" class="control-label">Email </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <input type="email" class="form-control" id="email" placeholder="Enter E-mail" name="email" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label for="phone-input-field" class="control-label">Phone # </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <input type="phone" class="form-control" id="phone" placeholder="Enter Phone #" name="phone" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label for="password-input-field" class="control-label">Password </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label for="repeat-password-input-field" class="control-label">Repeat Password </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <input type="password" class="form-control" id="repeat-password" placeholder="Repeat Password" name="confirm_password" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label for="dropdown-input-field" class="control-label">Account Type</label>
+                </div>
+                <div class="col-sm-4 input-column">
+                    <div class="dropdown">
+                        <select name="userType" role="menu" class="form-control">
+                            <option value="0">Buyer</option>
+                            <option value="1">Seller</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" required />I've read and accept the <a href="#">terms</a> and <a href="#">conditions</a>
+                </label>
+            </div>
+            <button class="btn btn-default submit-button" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
