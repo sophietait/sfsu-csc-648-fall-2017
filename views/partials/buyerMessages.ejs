@@ -1,22 +1,21 @@
-<div>
-<% if(messages != null){  %>
-    <% for(var i=0; i<messages.length;i++) { %>
-        <div class="card-block">
-            Listing ID:
-            <%= messages[i].listing_id %>
-        </div>
-        <div class="card-block">
-            Name:
-            <%= messages[i].first_name %> <%= messages[i].last_name %>
-        </div>
-        <div class="card-block">
-            Message:
-            <%= messages[i].message %>
-        </div>
-        <div class="card-block">
-            Sent Date:
-            <%= messages[i].sent_date %>
-        </div>
-    <% } %>
-<% } %>
+<div class="container">
+    <div class="row seller-listing">
+        <% if(messages != null){  %>
+            <% for(var i=0; i<messages.length;i++) { %>
+                <div class="col-sm-12">
+                    <div class="message-card">
+                        <div class="message-block">
+                            <h4 class="message-title"><%= messages[i].address %>, <%= messages[i].city  %>, <%= messages[i].state %> <%= messages[i].zipcode %><br><%= messages[i].first_name %> <%= messages[i].last_name %></h4>
+                            <div class="message-text">
+                                <%= messages[i].message %>
+                            </div>
+                        </div>
+                        <div class="message-footer">
+                            <small>Date Listed: <%= messages[i].sent_date %></small>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
 </div>
