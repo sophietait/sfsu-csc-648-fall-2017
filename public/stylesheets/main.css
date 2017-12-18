@@ -244,7 +244,9 @@ div.icon-bar {
 }
 
 .contact-clean form {
+    height: 286px;
     max-height: 286px;
+    width: 300px;
     max-width: 300px;
     margin: 0 auto;
     background-color: #ffffff;
@@ -292,8 +294,8 @@ div.icon-bar {
 }
 
 .contact-clean form textarea.form-control {
-    min-height: 100px;
-    max-height: 260px;
+    height: 120px;
+    max-height: 120px;
     padding-top: 10px;
     resize: none;
 }
@@ -310,7 +312,7 @@ div.icon-bar {
 
 .contact-clean form .btn {
     float: right;
-    padding: 16px 32px;
+    padding: 10px 25px;
     border: none;
     background: none;
     box-shadow: none;
