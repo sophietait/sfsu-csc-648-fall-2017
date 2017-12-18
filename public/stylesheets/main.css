@@ -171,7 +171,7 @@ body {
    font-size: 38px;
    font-family: 'Cabin Sketch', cursive;
 }
-            
+
 .navbar-header .navbar-brand:hover{
 	  cursor:pointer;
     color: #272635;
@@ -654,4 +654,30 @@ div.icon-bar {
     color:rgba(0, 0, 0, .4);
     border-top:1px solid rgba(0, 0, 0, .05) !important;
     background:#fff;
+}
+
+.formContainer{
+  margin-top: 20px;
+}
+
+.formContainer div.col-sm-6{
+  position:absolute;
+  left:25%;
+  margin:0px auto;
+}
+
+.form-group label{
+  float:left;
+}
+
+#inputFile{
+  margin-top:10px;
+}
+#fileHelp{
+  margin-top:15px;
+  float:left;
+}
+
+#submitButton{
+  margin-top:15px;
 }

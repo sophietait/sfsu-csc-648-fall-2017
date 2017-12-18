@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,11 +15,16 @@
 
 	<body>
         <% include ../partials/disclaimer.ejs %>
-        <% include ../partials/navbar.ejs %>
+		<% include ../partials/navbar.ejs %>
+		<h2 class="page-heading">Search Results</h2>
+		<div id="back-button">
+			<!-- Go back (resubmit search) -->
+			<a onclick="javascript:history.back()" class="btn btn-primary">Back </a>
+		</div>
 		<div class="container text-center">
 
             <% include ../partials/searchbar.ejs %>
-			
+
 			<div class="row">
 				<div class="dropdown col-sm-4 col-xs-4">
                     <h4 id = "labelPrice">Price</h4>
@@ -60,21 +66,17 @@
 
 			<!-- If zero listings were found, display featured listings -->
 			<% if(data.length !== 0) { %>
-
 				<div class="row">
 					<div class="col-sm-12 searchResults">
 						<!-- Display table of search results using ejs  -->
 						<div id="searchResultsTable">
 							<% include ../partials/searchResults.ejs %>
 						</div>
-					
+
 					</div>
 				</div>
-
 			<% } else { %>
-
 				<%- include ../partials/featured_homes.ejs %>
-
 			<% } %>
 
 		</div>
