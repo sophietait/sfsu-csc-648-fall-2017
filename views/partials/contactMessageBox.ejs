@@ -1,6 +1,20 @@
 <div class="col-md-4 contact-clean">
     <form action="../contactedListing/contactSeller" method="post">
-        <h2 class="text-center">Contact <br> <%= listingData.first_name %> <%= listingData.last_name %></h2>
+        <h2 class="text-center">Contact <%= listingData.first_name %> <%= listingData.last_name %></h2>
+
+        <!-- Insert Phone Number
+        <div class="form-group">
+            <div class="form-group">
+                <div class="col-sm-3 label-column">
+                    <label for="phone-input-field" class="control-label" style="font-size: 20px;">Phone </label>
+                </div>
+                <div class="col-sm-9 input-column">
+                    <input type="phone-contact" class="form-control" id="phone" style="font-size: 24px;"  placeholder="Enter Phone #" name="phone" required />
+                </div>
+            </div>
+        </div>
+        -->
+
         <div class="form-group">
             <textarea class="form-control" rows="14" name="message" placeholder="Hi, I am interested in this house. I would like to go through it with you in further details. Please get back to me as soon as possible!">Hi, I am interested in this house. I would like to go through it with you in further details. Please get back to me as soon as possible!</textarea>
             <input type="hidden" name="listingID" value=<%= listingData.listing_id %>>
