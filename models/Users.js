@@ -44,12 +44,12 @@ exports.getUserById = function(id, cb) {
 
 /*
  * addNewUser
- * q is an object that contains email and password
+ * q is an object that contains user signup information
  */
 exports.addNewUser = function(q, cb) {
 	var sql = "INSERT INTO user(user_type, first_name, last_name, email, user_password, phone, i_agree) ";
-		sql += "VALUES(?, ?, ?, ?, ?, 0, 1)";
-	db.runqueryEscaped(sql, [q.type, q.first_name, q.last_name, q.email, q.password], cb);
+		sql += "VALUES(?, ?, ?, ?, ?, ?, 1)";
+	db.runqueryEscaped(sql, [q.type, q.first_name, q.last_name, q.email, q.password, q.phone], cb);
 }
 
 exports.addListing = function(listingParams, userID, cb) {
@@ -89,12 +89,13 @@ exports.getSellerListings = function(user, cb){
 
 exports.getMessages = function(user, cb){
 	if(user.type){
-		var sql = "SELECT DISTINCT user.first_name, user.last_name, contacted_listing.listing_id, contacted_listing.message, contacted_listing.sent_date ";
+		var sql = "SELECT DISTINCT user.first_name, user.last_name, user.phone, contacted_listing.listing_id, contacted_listing.message, contacted_listing.sent_date ";
 			sql += "FROM user INNER JOIN contacted_listing ON user.user_id = contacted_listing.buyer_id ";
 			sql += "WHERE user.user_type = 0 AND ";
 			sql += "contacted_listing.listing_id IN ";
-			sql += "(SELECT listing_id from listing WHERE listing.seller_id = ?)";
-			db.runqueryEscaped(sql, [user.id], cb);
+			sql += "(SELECT listing_id from listing WHERE listing.seller_id = ?) ";
+			sql += "ORDER BY contacted_listing.sent_date DESC";
+		db.runqueryEscaped(sql, [user.id], cb);
 	}
 	else{
 		var sql = "SELECT t1.message, t1.sent_date, t1.listing_id, t2.first_name, t2.last_name ";
