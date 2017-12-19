@@ -13,7 +13,7 @@ router.post('/contactSeller', function(req, res, next) {
 
 				// Could be caused by user sending a message to the same listing twice.
 			}
-			res.redirect('../user/dashboard');
+			res.redirect('back'); // redirect back to listing page
 		});
 	}
 	else {

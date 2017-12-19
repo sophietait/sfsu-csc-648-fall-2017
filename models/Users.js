@@ -44,12 +44,12 @@ exports.getUserById = function(id, cb) {
 
 /*
  * addNewUser
- * q is an object that contains email and password
+ * q is an object that contains user signup information
  */
 exports.addNewUser = function(q, cb) {
 	var sql = "INSERT INTO user(user_type, first_name, last_name, email, user_password, phone, i_agree) ";
-		sql += "VALUES(?, ?, ?, ?, ?, 0, 1)";
-	db.runqueryEscaped(sql, [q.type, q.first_name, q.last_name, q.email, q.password], cb);
+		sql += "VALUES(?, ?, ?, ?, ?, ?, 1)";
+	db.runqueryEscaped(sql, [q.type, q.first_name, q.last_name, q.email, q.password, q.phone], cb);
 }
 
 exports.addListing = function(listingParams, userID, cb) {
