@@ -673,6 +673,18 @@ div.icon-bar {
   margin:0px auto;
 }
 
+.formContainer div.col-md-6{
+  position:absolute;
+  left:25%;
+  margin:0px auto;
+}
+
+.formContainer div.col-lg-6{
+  position:absolute;
+  left:25%;
+  margin:0px auto;
+}
+
 .form-group label{
   float:left;
 }
