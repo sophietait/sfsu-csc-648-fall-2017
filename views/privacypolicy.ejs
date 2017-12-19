@@ -1,0 +1,33 @@
+ <!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title><%= title %></title>
+        <link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css" type = "text/css"> </link>
+        <link rel="stylesheet" href="stylesheets/main.css" type = "text/css">
+        <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+        <script src = "bootstrap/js/jquery.min.js"></script>
+        <script src = "bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <% include partials/disclaimer.ejs %>
+        <% include partials/navbar.ejs %>
+
+		<!-- Privacy policy content -->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<h4>
+					Dream Home is determined to protect the privacy of its users. User data will be properly encrypted and no information will be sold to a third party.
+					</h4>
+				</div>
+			</div>
+		</div>
+		<!-- end Privacy policy content -->
+
+        <% include partials/footer.ejs %>
+    </body>
+
+</html>

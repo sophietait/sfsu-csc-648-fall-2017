@@ -41,4 +41,11 @@ router.get('/home', function(req, res, next) {
 	});
 });
 
+router.get('/privacypolicy', function(req, res, next) {
+	res.render('privacypolicy', {
+		title: 'Dream Home',
+		userData: req.session.user
+	});
+});
+
 module.exports = router;
