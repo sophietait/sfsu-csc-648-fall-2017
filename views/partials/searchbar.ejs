@@ -2,11 +2,10 @@
     <form class="search-form" action="/fa17g05/search" method="get">
         <div class="input-group">
             <div class="input-group-addon"><span><i class="glyphicon glyphicon-search"></i></span></div>
-            <input id="search_box" type="text" placeholder="Enter address, city, state, or zip" class="form-control" name="search_text" maxlength = "40" value = "<%=pass_search_text%>" />
+            <input id="search_box" type="text" placeholder="Enter address, city, state, or zip" class="form-control" name="search_text" pattern="[a-zA-Z0-9 ]+" title="Invalid Input. Only Alphanumeric Characters" maxlength = "40" value = "<%= pass_search_text %>" />
             <div class="input-group-btn">
                 <button id="search_button" class="btn btn-default" type="submit">Search </button>
             </div>
         </div>
     </form>
 </div>
-

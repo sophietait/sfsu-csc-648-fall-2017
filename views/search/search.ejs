@@ -65,7 +65,6 @@
 
 			<!-- If zero listings were found, display featured listings -->
 			<% if(data.length !== 0) { %>
-
 				<div class="row">
 					<div class="col-sm-12 searchResults">
 						<!-- Display table of search results using ejs  -->
@@ -77,11 +76,13 @@
 				</div>
 
 			<% } else { %>
+                <div class="alert alert-info">
+                	No results found
+                </div>
 
 				<%- include ../partials/featured_homes.ejs %>
 
 			<% } %>
-
 		</div>
 	</body>
 </html>
