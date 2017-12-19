@@ -5,7 +5,10 @@
                 <div class="col-sm-12">
                     <div class="message-card">
                         <div class="message-block">
-                            <h4 class="message-title"><a href="../listing/<%= messages[i].listing_id %>">Go to listing <%= messages[i].listing_id %></a><br><%= messages[i].first_name %> <%= messages[i].last_name %> (Phone #: <%= messages[i].phone %>)</h4>
+                            <h4 class="message-title">
+                                <a href="../listing/<%= messages[i].listing_id %>"><%= messages[i].address %>, <%= messages[i].city  %>, <%= messages[i].state %> <%= messages[i].zipcode %></a>
+                                <br><%= messages[i].first_name %> <%= messages[i].last_name %> (Phone #: <%= messages[i].phone %>)
+                            </h4>
                             <div class="message-text">
                                 <%= messages[i].message %>
                             </div>
