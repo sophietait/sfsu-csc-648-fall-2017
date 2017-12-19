@@ -90,6 +90,7 @@ body {
 #back-button {
     margin-left: 60px;
     margin-bottom: -73px;
+    position: absolute;
 }
 
 .search-form {
@@ -243,7 +244,9 @@ div.icon-bar {
 }
 
 .contact-clean form {
+    height: 286px;
     max-height: 286px;
+    width: 300px;
     max-width: 300px;
     margin: 0 auto;
     background-color: #ffffff;
@@ -291,8 +294,8 @@ div.icon-bar {
 }
 
 .contact-clean form textarea.form-control {
-    min-height: 100px;
-    max-height: 260px;
+    height: 120px;
+    max-height: 120px;
     padding-top: 10px;
     resize: none;
 }
@@ -309,7 +312,7 @@ div.icon-bar {
 
 .contact-clean form .btn {
     float: right;
-    padding: 16px 32px;
+    padding: 10px 25px;
     border: none;
     background: none;
     box-shadow: none;
@@ -490,6 +493,10 @@ div.icon-bar {
     margin-left: 35px;
 }
 
+.page-heading{
+    text-align: center;
+}
+
 /* Registration Form */
 .register-form form.custom-form {
     padding:55px;
@@ -580,7 +587,7 @@ div.icon-bar {
     outline:none;
 }
 
-/* Dashboard */
+/* Dashboard Listing */
 .nav.nav-tabs.panel-heading {
     padding:3px 9px 0 30px;
 }
@@ -680,4 +687,66 @@ div.icon-bar {
 
 #submitButton{
   margin-top:15px;
+}
+
+/* Dashboard Message */
+.message-card {
+    margin:10px 64px;
+    font-size:1em;
+    overflow:hidden;
+    padding:0;
+    border:none;
+    border-radius:.28571429rem;
+    box-shadow:0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+@media (max-width: 767px) {
+    .message-card {
+        margin:10px 0;
+        font-size:1em;
+        overflow:hidden;
+        padding:0;
+        border:none;
+        border-radius:.28571429rem;
+        box-shadow:0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    }
+}
+
+.message-block {
+    font-size:1em;
+    position:relative;
+    margin:0;
+    padding:1em;
+    border:none;
+    border-top:1px solid rgba(34, 36, 38, .1);
+    box-shadow:none;
+}
+
+.message-title {
+    margin-top:-5px;
+    padding:0 .5em;
+    padding-bottom:.2em;
+    font-size:1.28571429em;
+    font-weight:700;
+    line-height:1.2857em;
+    border-bottom:1px solid rgba(0, 0, 0, .05) !important;
+}
+
+.message-text {
+    clear:both;
+    margin:-0.5em 0;
+    color:rgba(0, 0, 0, .68);
+}
+
+.message-footer {
+    text-align:right;
+    font-size:1em;
+    position:static;
+    top:0;
+    left:0;
+    max-width:100%;
+    padding:.2em 1em;
+    color:rgba(0, 0, 0, .4);
+    border-top:1px solid rgba(0, 0, 0, .05) !important;
+    background-color:rgba(108, 174, 224, .5);
 }

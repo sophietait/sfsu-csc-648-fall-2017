@@ -12,7 +12,12 @@
 
 	<body>
     	<% include ../partials/disclaimer.ejs %>
-   	 	<% include ../partials/navbar.ejs %>
+		<% include ../partials/navbar.ejs %>
+		<div id="back-button">
+			<!-- Go back (resubmit search) -->
+			<a onclick="javascript:history.back()" class="btn btn-primary">Back </a>
+		</div>
+		<h2 class="page-heading"><%= "Browse by " +browseParam %></h2>
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-sm-12">
