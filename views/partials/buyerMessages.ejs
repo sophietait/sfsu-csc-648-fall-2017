@@ -6,6 +6,22 @@
             <%= messages[i].listing_id %>
         </div>
         <div class="card-block">
+            Address:
+            <%= messages[i].address %>
+        </div>
+        <div class="card-block">
+            State:
+            <%= messages[i].state %>
+        </div>
+        <div class="card-block">
+            City:
+            <%= messages[i].city %>
+        </div>
+        <div class="card-block">
+            Zipcode:
+            <%= messages[i].zipcode %>
+        </div>
+        <div class="card-block">
             Name:
             <%= messages[i].first_name %> <%= messages[i].last_name %>
         </div>
@@ -16,6 +32,10 @@
         <div class="card-block">
             Sent Date:
             <%= messages[i].sent_date %>
+        </div>
+        <div class="card-block">
+            Phone:
+            <%= messages[i].phone %>
         </div>
     <% } %>
 <% } %>
