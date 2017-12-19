@@ -89,11 +89,8 @@ exports.getSellerListings = function(user, cb){
 
 exports.getMessages = function(user, cb){
 	if(user.type){
-		var sql = "SELECT DISTINCT user.first_name, user.last_name, user.phone, contacted_listing.listing_id, contacted_listing.message, contacted_listing.sent_date, ";
-			sql += "listing.address, listing.state, listing.city, listing.zipcode ";
-			sql += "FROM contacted_listing ";
-			sql += "INNER JOIN user ON user.user_id = contacted_listing.buyer_id ";
-			sql += "INNER JOIN listing ON contacted_listing.listing_id = listing.listing_id ";
+		var sql = "SELECT DISTINCT user.first_name, user.last_name, user.phone, contacted_listing.listing_id, contacted_listing.message, contacted_listing.sent_date ";
+			sql += "FROM user INNER JOIN contacted_listing ON user.user_id = contacted_listing.buyer_id ";
 			sql += "WHERE user.user_type = 0 AND ";
 			sql += "contacted_listing.listing_id IN ";
 			sql += "(SELECT listing_id from listing WHERE listing.seller_id = ?) ";
@@ -105,7 +102,7 @@ exports.getMessages = function(user, cb){
 			sql += "from (SELECT user.user_id as buyer_id, contacted_listing.message, contacted_listing.sent_date, contacted_listing.listing_id ";
 			sql += "FROM user inner join contacted_listing ";
 			sql += "on user.user_id = contacted_listing.buyer_id) as t1 ";
-			sql += "INNER JOIN ";
+			sql += "inner join ";
 			sql += "(SELECT listing.listing_id, user.first_name, user.last_name from ";
 			sql += "user inner join listing on user.user_id = listing.seller_id) as t2 ";
 			sql += "on t1.listing_id = t2.listing_id ";
